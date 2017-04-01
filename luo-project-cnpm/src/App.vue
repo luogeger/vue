@@ -3,18 +3,26 @@
     <h1>{{title}}</h1>
     <input type="text" v-model="newItem" @keyup.enter="addItem" placeholder="Create a todo">
     <ul>
-      <li v-for="item in items" :class="{finished: item.completed}" @click="isCompleted(item)">
+      <li v-for="item in items" :class="{finished: item.completed}" >
         <p v-text="item.label"></p>
+        <button @click="isCompleted(item)" class="button">Delete</button>
       </li>
     </ul>
     <!--<img src="./assets/logo.png">-->
     <!--<router-view></router-view>-->
+    <hello msgfromfather="this is the msg from his father"></hello>
   </div>
+
+
+
+
 </template>
 
 <script>
   import Storage from './storage.js';// 引入storage.js
   //console.log(Storage); //打印出来的是一个对象，有fetch() 和 save()
+  import Hello from './components/Hello.vue';
+//  console.log(Hello);
   export default {
     name: 'app',
     data: function () {
@@ -24,6 +32,8 @@
         newItem: '',
       }
     },// <data end>
+
+    components: {Hello},
 
     watch: {
       items: {
@@ -46,7 +56,9 @@
         });
         this.newItem = '';
       }
-    }
+    },
+
+
 
   }// <export end>
 </script>
@@ -55,6 +67,7 @@
 #app{
   margin: 150px 0 0 500px;
   font-family: 'microsoft yahei';
+
 }
 input{
   width: 400px;
@@ -62,13 +75,28 @@ input{
   font-size: 30px;
 }
 
+ul{
+  padding: 0;
+  width: 400px;
+}
+li{
+  height: 50px;
+}
 p{
   margin: 0;
   font-size: 30px;
   padding: 5px 0;
 }
-li>p {
+
+.button{
   cursor: pointer;
+  height: 30px;
+  /*border-radius: 6px;*/
+  background-color: #42B983;
+  position: relative;
+  top: -40px;
+  right: -340px;
+  color: #fff;
 }
 
 .finished {

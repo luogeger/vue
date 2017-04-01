@@ -1,7 +1,8 @@
 <template>
   <div class="qwe">
-    <h1>{{ msgs }}</h1>
-    <h1>{{ msga }}</h1>
+    <button @click="getFatherMsg">Click</button>
+    <h1>{{ msg }}</h1>
+    <h1 v-if="clickHave" v-text="msgfromfather"></h1>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -26,8 +27,14 @@ export default {
   name: 'hello',
   data () {
     return {
-      msga: 'Welcome to Your Vue.js App A',
-      msgs: 'Welcome to Your Vue.js App S'
+      msg: 'Welcome to Your Vue.js App ',
+      clickHave: false
+    }
+  },
+  props: ['msgfromfather'],
+  methods: {
+    getFatherMsg: function (){
+      this.clickHave = !this.clickHave;
     }
   }
 }
@@ -37,6 +44,7 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+  color: #42C088;
 }
 
 ul {
