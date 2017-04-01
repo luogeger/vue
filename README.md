@@ -2,28 +2,77 @@
 
 ## vue.js简介及框架简介
 > 轻量级的MVVM框架，有react的组件化的概念，可以轻松的视线数据和展示的分离；也有angular灵活的指令和页面操作的方法。
-### 课程简介
+### 简介
 - 初步了解vue.js框架
 - vue.js开发环境的搭建、脚手架工具的使用
 - vue.js具体的指令和项目实践
+
 ### 准备知识
-- HTML、css、javaScript
 - 前端**模块化**基础
 - 对**ES6**有初步了解
 
+### 熟悉基础框架代码
+
 ## vue.js开发环境搭建及热更新
 
+## 划分组件
+- 功能模块：select，pagenation...
+- 页面区域：header，footer，sidebar...
+```html
+    <header></header>
+    <footer></footer>
+```
+
+```javascript
+    import Header from './header.vue'
+    import Footer from './header.vue'
+    new Vue({
+        data: {
+            isShow: true
+        },
+        components: [Header, Footer]//注册组件
+    })
+```
+- 组件之间的通信 - **props**
+```html
+    <!--this is app.vue-->
+    <header msg="something interseting"></header>
+    <footer></footer>
+```
+```javascript
+    //this is header.vue
+    new Vue({
+        data: {
+            username: 'luo'
+        },
+        props: ['msg'],
+        methods: {
+            doThis: function (){
+                console.log(this.msg);
+            }
+        }
+    })
+```
+- 父向子组件传参
 
 
-
-
-
-
+- 子向父组件传参
 
 
 
 
 ## 安装
+- 命令行工具安装
+    - 1.全局安装vue-cli: ``npm install --global vue-cli``
+        - 检查是否安装好，直接在命令行输入``vue``
+    - 2.创建一个 基于webpack模板的新项目：``vue init webpack my-project``
+        - 这时候你会看到当前文件夹多了一些文件
+    - 3.在``my-project``文件夹打开命令行，``npm install``
+        - **注意：** 有时候npm的速度很慢，可以考虑cnpm, 输入下面命令行
+        - ``npm install -g cnpm --registry=https://registry.npm.taobao.org``
+        -  输入命令：``cnpm``检查是否安装好，以后用到npm的地方用cnpm代替。
+
+
 ## 介绍
 > v-if, v-for, v-on:click, v-bind:title,  v-bind:todo='item',
 - 声明与渲染
@@ -66,6 +115,7 @@
     ```html
     <span>Message: {{msg}}</span>
     <span v-once>This will never change: {{msg}}</span>
+    <span v-text:'msg'> </span>
     ```
     - 纯HTML
     ```html
@@ -113,8 +163,8 @@
     > **modifiers**以``.``指明的特殊后缀，支出指令应该以特殊方式绑定。``.prevent``修饰符告诉``v-on``对于触发的事件调用``event.preventDefault()``
 - 过滤器
 - 缩写
-    - v-bind
-    - v-on
+    - v-bind ``:``
+    - v-on  ``@``
 
 
 ## 计算属性
@@ -123,7 +173,17 @@
 - 计算Setter
 - 观察Watchers
 
+## class与style绑定
 
+## 条件渲染
+- v-if
+    - template中 v-if 条件组
+    - v-else
+    - v-else-if
+    - 用key管理可复用的元素
+- v-show
+- v-if和v-show
+- v-if和v-for一起使用
 
 
 
