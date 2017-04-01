@@ -22,3 +22,4 @@ bin-release/
 /.idea
 /code
 /luo-project
+luo-project-cnpm/node_modules
