@@ -1,8 +1,11 @@
 <template>
   <div class="qwe">
     <button @click="getFatherMsg">Click</button>
+    <button @click="sendFather">child msg</button>
+
     <h1>{{ msg }}</h1>
     <h1 v-if="clickHave" v-text="msgfromfather"></h1>
+    <h2 v-text="sendFatherMsg" style="color: #ff0000;"></h2>
     <h2>Essential Links</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -28,6 +31,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App ',
+      sendFatherMsg: 'this is child msg!',
       clickHave: false
     }
   },
@@ -35,6 +39,10 @@ export default {
   methods: {
     getFatherMsg: function (){
       this.clickHave = !this.clickHave;
+    },
+    sendFather: function (){
+      console.log(this.sendFatherMsg + '这里是子组件');
+      this.$emit('receive-son', this.sendFatherMsg);
     }
   }
 }

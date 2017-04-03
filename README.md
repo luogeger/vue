@@ -2,7 +2,6 @@
 
 ## vue.js简介及框架简介
 > 轻量级的MVVM框架，有react的组件化的概念，可以轻松的视线数据和展示的分离；也有angular灵活的指令和页面操作的方法。
-### 简介
 - 初步了解vue.js框架
 - vue.js开发环境的搭建、脚手架工具的使用
 - vue.js具体的指令和项目实践
@@ -10,16 +9,13 @@
 ### 准备知识
 - 前端**模块化**基础
 - 对**ES6**有初步了解
-
-- 熟悉基础框架代码
+- 熟悉基础框架
     - name: ''
     - data: {}
     - props: [ ]
     - components: {}
     - methods: {}
     - watch: {}
-
-## vue.js开发环境搭建及热更新
 
 ## 划分组件
 - 功能模块：select，pagenation...
@@ -63,11 +59,69 @@
     - 子组件需要用到``props: ['str']``属性来接收，同时这个值也保存在``data``里面了，可以直接渲染到页面
 
 - 子向父组件传参
+    > vue实例实现了一个自定义事件接口，方便在组件树中通信，这个事件系统独立于原生DOM事件，用法也不同
+    - 自定义事件：每个vue实例都是一个事件触发器
+    - ``$on()``监听事件
+    - ``$emit()``在上面触发事件
+    - ``$dispatch()``派发事件，事件沿着父链冒泡
+    - ``$broadcast()``广播事件，事件向下传到给所有的后代
+    > 不同于DOM事件，vue事件在冒泡过程中第一次触发回调之后自动停止冒泡，除非回调明确返回**true**
+
+- 在父组件里面监听子组件：子组件要告诉父组件什么事情
+    - 子组件发生事件，把子组件的信息传递给父组件
+```html
+    <button @click="sendFather">child msg</button>
+```
+```javascript
+    sendFather: function (){
+      console.log(this.sendFatherMsg + '这里是子组件');
+      this.$emit('receive-son', this.sendFatherMsg);
+    }
+```
+> 通过``$emit``方法，第一个参数要和父组件对应，第二个参数是要传递的信息
+```html
+    <hello
+    msgfromfather="this is the msg from his father"
+    v-on:receive-son="receiveSonMsg">
+    </hello>
+```
+```javascript
+    receiveSonMsg: function (msg){
+        console.log('这里是父组件：'+msg);
+    }
+```
 
 
 
 
-## 安装
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 安装：vue.js开发环境搭建及热更新
 - 命令行工具安装
     - 1.全局安装vue-cli: ``npm install --global vue-cli``
         - 检查是否安装好，直接在命令行输入``vue``

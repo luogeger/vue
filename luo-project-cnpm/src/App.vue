@@ -10,7 +10,7 @@
     </ul>
     <!--<img src="./assets/logo.png">-->
     <!--<router-view></router-view>-->
-    <hello msgfromfather="this is the msg from his father"></hello>
+    <hello msgfromfather="this is the msg from his father" v-on:receive-son="receiveSonMsg"></hello>
   </div>
 
 
@@ -55,6 +55,9 @@
           completed: false
         });
         this.newItem = '';
+      },
+      receiveSonMsg: function (msg){
+        console.log('这里是父组件：'+msg);
       }
     },
 
