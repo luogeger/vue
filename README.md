@@ -35,7 +35,7 @@
         components: [Header, Footer]//注册组件
     })
 ```
-- 组件之间的通信 - **props**
+- 组件之间的通信 - **props** 属性
 ```html
     <!--this is app.vue-->
     <header msg="something interseting"></header>
@@ -56,7 +56,7 @@
     })
 ```
 - 父向子组件传参
-    - 子组件需要用到``props: ['str']``属性来接收，同时这个值也保存在``data``里面了，可以直接渲染到页面
+    - 子组件需要用到``props: ['str']``属性来接收，同时这个值也保存在``data``里面了，可以直接打印和渲染到页面
 
 - 子向父组件传参
     > vue实例实现了一个自定义事件接口，方便在组件树中通信，这个事件系统独立于原生DOM事件，用法也不同
@@ -66,11 +66,10 @@
     - ``$dispatch()``派发事件，事件沿着父链冒泡
     - ``$broadcast()``广播事件，事件向下传到给所有的后代
     > 不同于DOM事件，vue事件在冒泡过程中第一次触发回调之后自动停止冒泡，除非回调明确返回**true**
-
-- 在父组件里面监听子组件：子组件要告诉父组件什么事情
+- 1.在父组件里面监听子组件：子组件要告诉父组件什么事情
     - 子组件发生事件，把子组件的信息传递给父组件
 ```html
-    <button @click="sendFather">child msg</button>
+    <button v-on:click="sendFather">child msg</button>
 ```
 ```javascript
     sendFather: function (){
@@ -78,6 +77,8 @@
       this.$emit('receive-son', this.sendFatherMsg);
     }
 ```
+
+
 > 通过``$emit``方法，第一个参数要和父组件对应，第二个参数是要传递的信息
 ```html
     <hello
@@ -91,6 +92,7 @@
     }
 ```
 
+- 子组件向父组件传参，第二种方法：
 
 
 
