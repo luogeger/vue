@@ -10,6 +10,7 @@ var vm = new Vue({
         checkBgcAllFlage: false,//全选框状态切换
         totalMoney: 0,//总金额联动
         delFlag: false,//对话框，弹出层状态切换
+        delItem: "",//存储要删除的item的临时变量
     },//data end
 
     filters: {
@@ -81,8 +82,17 @@ var vm = new Vue({
             })
         },
         //点击删除按钮获取当前商品
-        delId: function (){
-            
+        delId: function (item){
+            this.delFlag = !this.delFlag;
+            this.delItem = item;//把获取到要删除的单品，存储起来，在用原生js进行删除
+
+        },
+        //点击YES， 确认删除
+        delConfirm: function (){
+            var index = this.productList.indexOf(this.delItem);
+            this.productList.splice(index, 1);
+            this.delFlag = !this.delFlag;
+            this.calcTotalPrice();
         }
     },//methods end
 

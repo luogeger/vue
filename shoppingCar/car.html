@@ -129,7 +129,8 @@
                         <dd v-for="part in item.parts" v-text="part.partsName"></dd>
                     </dl>
                 </div>
-                <h4 class="delete" @click="delId()">删除</h4>
+                                <!-- 这里还是要传item -->
+                <h4 class="delete" @click="delId(item)">删除</h4>
             </li>
             <br>
             <br>
@@ -140,8 +141,8 @@
     </div>
     <!-- 对话框 -->
     <div class="dialogue"  v-if="delFlag">
-        <h2>YES--</h2>
-        <h2>--NO</h2>
+        <h2 @click="delConfirm()">YES--</h2>
+        <h2 @click="delFlag = false">--NO</h2>
     </div>
     <!-- 透明层 -->
     <div class="model " v-if="delFlag"></div>
