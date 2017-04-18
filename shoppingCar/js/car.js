@@ -7,7 +7,9 @@ var vm = new Vue({
     data: {
         //asd: 'luoxiaoqing',
         productList: [],
-        checkBgcAllFlage: false,
+        checkBgcAllFlage: false,//全选框状态切换
+        totalMoney: 0,//总金额联动
+        delFlag: false,//对话框，弹出层状态切换
     },//data end
 
     filters: {
@@ -29,6 +31,7 @@ var vm = new Vue({
                 _this.productList = res.body.result.list;
             });
         },
+        //商品的增加，减少
         changeMoney: function (item, type){
             if(type > 0){
                 item.productQuentity++;
@@ -41,17 +44,20 @@ var vm = new Vue({
                 else{
                     item.productQuentity--;
                 }
-
-            }
+            };
+            this.calcTotalPrice();
         },
+        //单个商品被选中的状态切换
         selectCheckBgc: function (item){
             if(typeof item.CheckBgcFlag == 'undefined'){
                 Vue.set(item, 'CheckBgcFlag', true);
             }
             else{
                 item.CheckBgcFlag = !item.CheckBgcFlag;
-            }
+            };
+            this.calcTotalPrice();
         },
+        //全选，取消全选的切换，以及联动商品列表
         selectCheckBgcAll: function (flag){
             this.checkBgcAllFlage = flag;
             this.productList.forEach(function (value, index){
@@ -61,7 +67,22 @@ var vm = new Vue({
                 else{
                     value.CheckBgcFlagm = flag;
                 }
+            });
+            this.calcTotalPrice();
+        },
+        //计算总金额
+        calcTotalPrice: function (){
+            this.totalMoney = 0;
+            var _this = this;
+            this.productList.forEach(function (value, index){
+                if(value.CheckBgcFlag){//单个商品，只有被选中才需要计算价格
+                    _this.totalMoney += value.productQuentity * value.productPrice;
+                }
             })
+        },
+        //点击删除按钮获取当前商品
+        delId: function (){
+            
         }
     },//methods end
 

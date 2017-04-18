@@ -34,6 +34,28 @@
               "partsName": "吸管"
             }
           ]
+        },
+        {
+          "productId": "35785547",
+          "productName": "士力架",
+          "productPrice": "49",
+          "productQuentity": "2",
+          "productImage": "imgs/slj.png",
+          "productTitle": "title士力架",
+          "parts": [
+            {
+              "partsId":"23489",
+              "partsName": "贴纸"
+            },
+            {
+              "partsId":"280889",
+              "partsName": "门票"
+            },
+            {
+              "partsId":"23189",
+              "partsName": "话费"
+            }
+          ]
         }
       ]
   },
