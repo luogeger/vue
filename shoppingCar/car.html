@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{
+            border-bottom: 1px solid red;
+        }
+        a{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        input{
+            width: 20px;
+        }
+        .check{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+            border: 1px solid red;
+            border-radius: 50%;
+        }
+        .checkBgc{
+            background-color: #ff0000;
+        }
+        .checkBgcAll{
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1></h1>
+        <div id="box">
+            <ul>
+                <li v-for="(item, index) in productList">
+                    <h5 >
+                        {{item.productName}}
+                        <span class="check" :class="{'checkBgc':item.CheckBgcFlag}" @click="selectCheckBgc(item)"></span>
+                    </h5>
+                    <img v-bind:src="item.productImage" v-bind:alt="item.productTitle" style="width: 50px; height: 50px;">
+                    <h6>单价：<spn>{{item.productPrice | formatMoney}}</spn></h6>
+                    <h6>
+                        <a href="javascript:;" v-on:click="changeMoney(item, -1)">(-)</a>
+                        <input type="text" value="0" disabled v-model="item.productQuentity">
+                        <a href="javascript:;" @click="changeMoney(item, 1)">(+)</a>
+                    </h6>
+                    <h6>合计：<span>{{item.productQuentity*item.productPrice | money('元')}}</span></h6>
+                    <div>
+                        <dl>
+                            <dt>赠送：</dt>
+                            <dd v-for="part in item.parts" v-text="part.partsName"></dd>
+                        </dl>
+                    </div>
+                </li>
+                <span class="check" :class="{'checkBgcAll': checkBgcAllFlage}" @click="selectCheckBgcAll(true)"></span>全选
+                <span class="check" @click="selectCheckBgcAll(false)"></span>取消全选
+                <h4>总金额：</h4>
+            </ul>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="js/vue.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/car.js"></script>
+
+
