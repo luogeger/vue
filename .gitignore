@@ -22,4 +22,9 @@ bin-release/
 /.idea
 /code
 /luo-project
+
 luo-project-cnpm/node_modules
+imooc/node_modules
+shoppingCar/node_modules
+
+npm-debug.log
