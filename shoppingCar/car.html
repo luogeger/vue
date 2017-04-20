@@ -137,6 +137,11 @@
             <span class="check" :class="{'checkBgcAll': checkBgcAllFlage}" @click="selectCheckBgcAll(true)"></span>全选
             <span class="check" @click="selectCheckBgcAll(false)"></span>取消全选
             <h4>总金额：{{totalMoney}}</h4>
+            <h3>
+                <h2 @click="testAjax()">testAjax</h2>
+                <span v-text="test.title"></span>
+            </h3>
+
         </ul>
     </div>
     <!-- 对话框 -->

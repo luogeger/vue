@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        div{
+            /*background-color: #0094ff;*/
+        }
+        label{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 1px solid red ;
+        }
+
+        .loginBgc{
+            background-color: #067274;
+        }
+        .passwordBgc{
+            background-color: #067274;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <label for="login" :class="{'loginBgc': loginBgcFlag}"></label>
+    <input type="text" id="login" placeholder="请输入用户名" @focus="focus(1)" @blur="blur(1)">
+    <br>
+    <label for="password" :class="{'passwordBgc': passwordBgcFlag}"></label>
+    <input type="password" id="password" placeholder="请输入密码" @blur="blur(-1)" @focus="focus(-1)">
+    <i class="el-icon-edit"></i>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-delete"></i>
+    <el-button type="primary" icon="search">搜索</el-button>
+
+</div>
+
+</body>
+</html>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el: '#app',
+    data: {
+        loginBgcFlag: false,
+        passwordBgcFlag: false,
+
+    },
+    methods: {
+        blur: function (flag){
+            if(flag > 0){
+                this.loginBgcFlag = false;
+            }
+            else{
+                this.passwordBgcFlag = false;
+            }
+        },
+        focus: function (flag){
+            if(flag > 0){
+                this.loginBgcFlag = true;
+            }
+            else{
+                this.passwordBgcFlag = true;
+            }
+
+
+        }
+    }
+});
+</script>

@@ -11,6 +11,7 @@ var vm = new Vue({
         totalMoney: 0,//总金额联动
         delFlag: false,//对话框，弹出层状态切换
         delItem: "",//存储要删除的item的临时变量
+        test: '',
     },//data end
 
     filters: {
@@ -93,6 +94,14 @@ var vm = new Vue({
             this.productList.splice(index, 1);
             this.delFlag = !this.delFlag;
             this.calcTotalPrice();
+        },
+        //测试跨域
+        testAjax: function (){
+            var _this = this;
+            this.$http.jsonp('https://api.douban.com/v2/movie/in_theaters').then(function (res){
+                console.log(res.body);
+                _this.test = res.body;
+            });
         }
     },//methods end
 
