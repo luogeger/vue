@@ -1,7 +1,8 @@
 # vue.js及相关介绍
-
+- vue-admin [https://taylorchen709.github.io/vue-admin/](https://taylorchen709.github.io/vue-admin/)
+	- This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
 ## vue.js简介及框架简介
-> 轻量级的MVVM框架，有react的组件化的概念，可以轻松的视线数据和展示的分离；也有angular灵活的指令和页面操作的方法。
+> 轻量级的MVVM框架，有react的组件化的概念，可以轻松的实现数据的展示和分离；也有angular灵活的指令和页面操作的方法。
 - 组件化开发模式，渐进式框架: 字段的渲染，组件，路由，状态，构建系统
 - 初步了解vue.js框架
 - vue.js开发环境的搭建、脚手架工具的使用
@@ -249,16 +250,68 @@
 - v-if和v-for一起使用
 
 
+# shoppingCar
+- 1.下载 vue.js 和 vue-resource.js
+    - 创建package.json: ->``npm init``
+    - 下载vue.js：``cnpm install vue --save-dev``
 
+- 2.vue-resource、v-for
+    - 1.vue-resource插件是绑定在vm实例上面的。
+        - 1.promise结构``this.$http.get().then()``
+        - 2.vue里面所有的this都指向Vue的实例，函数内部this不是。
+    - 2.v-for指令的渲染，
+        - ``v-for="(item, index) in productList"``
+    - 3.``pit: ``不能用vm代替this
+        - vue2.0用``mounted``钩子代替了``ready``, 所以，并不能保证该实例已经插入文档。所以，应该在钩子函数种包含``Vue.nextTick/vm.$nextTick``
+        ```javascript
+        mounted: function (){
+            this.$nextTick(function (){
+                vm.cartView();
+            })
+        }
+        ```
+- 3.过滤``金额格式化``、
+    - 全局过滤器和局部过滤器，局部过滤器只有vue的实例才能使用
+        - ``bug: ``过滤器value没有toFixed()方法。
+        ```html
+        <h6>单价：<spn>{{item.productPrice | formatMoney}}</spn></h6> 局部过滤器
+        <h6>合计：<span>{{item.productQuentity*item.productPrice | money('元')}}</span></h6> 全局
+        ```
+        ```javascript
+        filters: {
+            formatMoney: function (value){
+                return "￥" + value;
+            }
+        }
+        Vue.filter('money', function (value, type ){
+            return value + type;
+        });
+        ```
+- 4.金额计算、单选、全选
+    - 如何用vue去监听一个不存在的变量。
+        - 如果一个对象里面的变量不存在，先判断这个变量存不存在``if(typeof item.checked == 'undefined')``
+        - 设置Vue全局变量: Vue.set(item, 'checked', true),有点类似angular的``$scope``
+        - 设置局部变量： ``this.$set(item, 'checked', true)``
+    - 没有实现单选框全部选中以后全选框也被选中，
+        - 全选和取消全选用用一个函数，参数传的分别是true和false
+        ```javascript
+        selectCheckBgcAll: function (flag){
+            this.checkBgcAllFlage = flag;
+            this.productList.forEach(function (value, index){
+                if(typeof value.CheckBgcFlagm == 'undefined'){
+                    Vue.set(value, 'CheckBgcFlag', flag)
+                }
+                else{
+                    value.CheckBgcFlagm = flag;
+                }
+            })
+        }
+        ```
 
-
-
-
-
-
-
-
-
+- 5.总金额计算、删除
+    - 怎么获取删除的是哪个商品？
+    - 1.0删除的方法：``this.List.$delete(this.item)``,现在已经不支持了。
+        - 为了尽可能提升性能，用原生js
 
 
 
