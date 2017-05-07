@@ -8,7 +8,7 @@ new Vue({
         addressListLength: 3,
         currentIndex: 0,
     },
-    mounted: function (){
+    mounted: function (){//钩子函数，声明周期
         this.$nextTick(function (){
             this.fetchAddredd();//调用默认方法
         })

@@ -61,8 +61,8 @@
                 <div class="address"><span>{{item.streetName}}</span></div>
                 <div class="tel"><span v-text="item.tel"></span></div>
                 <div class="default" v-if="item.idDefault"><span style="color: #FF0000;">默认地址</span></div>
-                <div class="setDefault" v-if="!item.idDefault" style="text-align: right;color: blue;">
-                    <span @click="setDefault(item.addressID)">设为默认</span>
+                <div class="setDefault"style="text-align: right;color: blue;">
+                    <span @click="setDefault(item.addressID)" v-if="!item.idDefault" >设为默认</span>
                 </div>
                 <div class="delete"><span>删除</span></div>
             </li>
