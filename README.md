@@ -314,7 +314,14 @@
         - 为了尽可能提升性能，用原生js
 
 
+- 6.地址栏的筛选
+    - 1.要缓存整个地址结果，过滤器（limitBy）
+    - 2.用原生js能实现的尽量不用vue框架实现 - 用computer方法
 
+- 7.选中卡片
+    - 1.click时需要声明变量和索引相同
+    - 2.class是否添加上去，由本身的Index和currentIndex作比较判断，
 
-
-
+- 8.设为默认
+    - 1.把自己设为默认的同时，还要把其他所有的设为不默认，forEach(function(item, index){});
+    - 2.click(item.addressID);
