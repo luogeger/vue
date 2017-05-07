@@ -31,6 +31,16 @@ new Vue({
         },
         changeAddressListLength: function (){
             this.addressListLength = this.addressList.length;
-        }
+        },
+        setDefault: function (addressID){
+            this.addressList.forEach(function (item, index){
+                if(item.addressID == addressID){
+                    item.idDefault = true;
+                }
+                else{
+                    item.idDefault = false;
+                }
+            });
+        },
     }
 });
