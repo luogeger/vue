@@ -1,10 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-size: 50px">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>address</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 0.32rem;
+            box-sizing: border-box;
+        }
+        .container{
+            padding: 0.2rem 1rem;
+            border: 0.02rem solid #ff0000;
+            width: 100%;
+            overflow: hidden;
+        }
+        ul{
+            width: 100%;
+            overflow: hidden;
+
+        }
+        li{
+            border: 1px solid #E8E8E8;
+            float: left;
+            width: 24%;
+            height: 4rem;
+        }
+        li>div>span{
+            display: inline-block;
+            padding: 0.1rem 0;
+            cursor: pointer;
+            padding-left: 0.2rem;
+        }
+        .create{
+            text-align: center;
+        }
+        .create>span{
+            position: relative;
+            top: 50%;
+
+        }
+        .more{
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #0094ff;
+            margin: 0.1rem 0;
+        }
+        .check{
+            border: 1px solid #FC801C;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <ul>
+            <li v-for="(item, index) in filterAddress" :class="{'check': index == currentIndex}" @click="currentIndex = index">
+                <div class="name"><span>{{item.useName}}</span></div>
+                <div class="address"><span>{{item.streetName}}</span></div>
+                <div class="tel"><span v-text="item.tel"></span></div>
+                <div class="default" v-if="item.idDefault"><span>默认地址</span></div>
+                <div class="setDefault" v-if="!item.idDefault" style="text-align: right;color: blue;"><span>设为默认</span></div>
+                <div class="delete"><span>删除</span></div>
+            </li>
+
+            <li class="create"><span style="color: #ff0000; cursor: pointer;">+ 添加新地址</span></li>
+        </ul>
+        <p @click="addressListLength = addressList.length" class="more">显示全部</p>
+    </div>
 
 </body>
 </html>
+<script src="js/vue.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/address.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

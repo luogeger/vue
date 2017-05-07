@@ -1,0 +1,47 @@
+{
+
+  "status": "0",
+  "message": "",
+  "result":[
+    {
+      "addressID":"10010",
+      "useName":"LiLei",
+      "streetName":"北京",
+      "postCode":"10010",
+      "tel":"13579246810",
+      "idDefault":true
+    },
+    {
+      "addressID":"10011",
+      "useName":"Lucy",
+      "streetName":"上海",
+      "postCode":"10011",
+      "tel":"13579246810",
+      "idDefault":false
+    },
+    {
+      "addressID":"10012",
+      "useName":"HaiMeiMei",
+      "streetName":"广州",
+      "postCode":"10012",
+      "tel":"13579246810",
+      "idDefault":false
+    },
+    {
+      "addressID":"10013",
+      "useName":"Lili",
+      "streetName":"深圳",
+      "postCode":"10013",
+      "tel":"13579246810",
+      "idDefault":false
+    },
+    {
+      "addressID":"10014",
+      "useName":"Jim",
+      "streetName":"武汉",
+      "postCode":"10014",
+      "tel":"13579246810",
+      "idDefault":false
+    }
+  ]
+}
