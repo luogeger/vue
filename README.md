@@ -325,3 +325,13 @@
 - 8.设为默认
     - 1.把自己设为默认的同时，还要把其他所有的设为不默认，forEach(function(item, index){});
     - 2.click(item.addressID);
+
+## imooc
+- 1.vue-cli
+    - 1.成熟的架构设计
+    - 2.本地测试服务器
+    - 3.集成打包上线方案
+    - 4.安装vue-cli
+        - ``npm install vue-cli -g``
+        - ``vue init webpack my-project``,初始化项目
+        - ``npm install``,安装项目依赖

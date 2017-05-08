@@ -25,6 +25,7 @@ bin-release/
 
 luo-project-cnpm/node_modules
 imooc/node_modules
+imoocTest/node_modules
 shoppingCar/node_modules
 
 npm-debug.log
