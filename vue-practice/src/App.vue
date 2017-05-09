@@ -1,47 +1,66 @@
 <template>
   <div id="app">
       <img src="./assets/logo.png">
-      <div class="main">
+      <p>总金额：<span>{{totalPrice}}</span></p>
+      <div class="------main">
           <!-- left -->
-          <div class="left">
-            <!-- apple -->
-            <div class="apple">
-              <router-link :to="{path: 'apple'}">
-                <span>to Apple</span>
-              </router-link>
-            </div>
-            <!-- banana -->
-            <div class="banana">
-              <router-link :to="{path: 'banana'}">
-                <span>to Banana</span>
-              </router-link>
-            </div>
-            <!-- -->
-            <div class="banana">
-              <router-link :to="{path: 'banana/green'}">
-                <span>to BananaGreen</span>
-              </router-link>
-            </div>
-          </div>
-          <!-- right view-->
-          <div class="view">
-            <router-view></router-view>
-          </div>
+          <!--<div class="left">-->
+            <!--&lt;!&ndash; apple &ndash;&gt;-->
+            <!--<div class="apple">-->
+              <!--<router-link :to="{path: 'apple'}">-->
+                <!--<span>to Apple</span>-->
+              <!--</router-link>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; banana &ndash;&gt;-->
+            <!--<div class="banana">-->
+              <!--<router-link :to="{path: 'banana'}">-->
+                <!--<span>to Banana</span>-->
+              <!--</router-link>-->
+            <!--</div>-->
+            <!--&lt;!&ndash; &ndash;&gt;-->
+            <!--<div class="banana">-->
+              <!--<router-link :to="{path: 'banana/green'}">-->
+                <!--<span>to BananaGreen</span>-->
+              <!--</router-link>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash; right view&ndash;&gt;-->
+          <!--<div class="view">-->
+            <!--<router-view></router-view>-->
+          <!--</div>-->
       </div>
+
+      <!-- vuex demo-->
+      <apple></apple>
+      <banana></banana>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+//hello 组件
+//import Hello from './components/Hello'
+//
+//export default {
+//  name: 'app',
+//  components: {
+//    Hello
+//  }
+//}
 
+//vuex apple、banana组件
+import Apple from './components/increment.vue'
+import Banana from './components/decrement.vue'
 export default {
-  name: 'app',
-  components: {
-    Hello
+  components: { Apple, Banana},
+  computed: {
+    totalPrice () {
+      if(this.$store.state.totalPrice < 0){
+        this.$store.state.totalPrice = 0;
+      }
+      return this.$store.state.totalPrice;
+    }
   }
 }
-
-
 </script>
 
 <style>

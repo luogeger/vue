@@ -42,13 +42,24 @@ let router = new VRouter({
 });
 
 //store
-//let store = new Vuex.store({
-//
-//});
+let store = new Vuex.Store({
+    state: {
+      totalPrice: 0
+    },
+    mutations: {
+      increment (state, price) {
+        state.totalPrice += price;
+      },
+      decrement (state, price) {
+        state.totalPrice -= price;
+      }
+    }
+});
 
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 });
