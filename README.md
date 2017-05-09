@@ -335,3 +335,21 @@
         - ``npm install vue-cli -g``
         - ``vue init webpack my-project``,初始化项目
         - ``npm install``,安装项目依赖
+
+
+## vue-practice
+- 1.安装vue-router,
+    - 1.引入``import VRouter from 'vue-router'``
+    - 2.``Vue.use(VRouter)``
+    - 3.实例化router， ``let router = new VRouter({})``,vue-router引入进来，就是一个全局的类
+        - 配置路由：
+        - map映射关系:规定什么样的地址访问什么样的页面或者说组件,
+        - route-view,
+        - route-link, 在页面的跳转
+
+- 2.前端路由的参数
+    - 1.map进行设置
+
+- 3.路由的嵌套
+    - 1.也可以直接访问子路由``:to="{path: 'banana/yellow'}"``
+    - 2.在children子路由的``path: '/yellow'``, 锚链接地址变化

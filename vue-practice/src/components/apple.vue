@@ -3,14 +3,18 @@
 </template>
 <script>
 export default{
-  name: 'apple',
   data () {
     return {
       msg: 'i am apple',
     }
-  }
+  },
+//  methods: {
+//    getParam (){
+//      console.log(this.$route.params);
+//    },
+//  }
 }
 </script>
-<style>
+<style scoped>
 
 </style>

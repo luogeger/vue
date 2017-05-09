@@ -6,6 +6,8 @@ import App from './App'
 import VRouter from 'vue-router'
 import Apple from './components/Apple'
 import Banana from './components/Banana'
+import BananaYellow from './components/bananaYellow'
+import BananaGreen from './components/bananaGreen'
 
 Vue.config.productionTip = false;
 
@@ -21,7 +23,17 @@ let router = new VRouter({
       },
       {
         path:'/banana',
-        component:Banana
+        component:Banana,
+        children: [
+          {
+            path: 'yellow',
+            component: BananaYellow
+          },
+          {
+            path: 'green',
+            component: BananaGreen
+          }
+        ]
       },
     ]
 });
