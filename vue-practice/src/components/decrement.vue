@@ -24,7 +24,8 @@ export default {
       this.$store.commit('decrement', this.price)
     },
   }
-}
+};
+
 </script>
 <style scoped>
 .box{

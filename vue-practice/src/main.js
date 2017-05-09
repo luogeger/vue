@@ -44,7 +44,15 @@ let router = new VRouter({
 //store
 let store = new Vuex.Store({
     state: {
-      totalPrice: 0
+      totalPrice: 1
+    },
+    getters: {
+      getTotal (state) {
+        if(state.totalPrice < 0){
+          state.totalPrice = 0;
+        }
+        return state.totalPrice;
+      }
     },
     mutations: {
       increment (state, price) {
@@ -52,6 +60,11 @@ let store = new Vuex.Store({
       },
       decrement (state, price) {
         state.totalPrice -= price;
+      }
+    },
+    actions: {
+      increase (context, price) {
+        context.commit('increment', price)
       }
     }
 });

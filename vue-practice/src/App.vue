@@ -54,10 +54,8 @@ export default {
   components: { Apple, Banana},
   computed: {
     totalPrice () {
-      if(this.$store.state.totalPrice < 0){
-        this.$store.state.totalPrice = 0;
-      }
-      return this.$store.state.totalPrice;
+
+      return this.$store.getters.getTotal;
     }
   }
 }
