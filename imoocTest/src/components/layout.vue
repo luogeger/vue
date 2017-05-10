@@ -27,9 +27,7 @@
 
 </template>
 <script>
-export default {
 
-}
 </script>
 <style>
   html, body, div, span, applet, object, iframe,
