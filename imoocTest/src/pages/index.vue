@@ -25,8 +25,8 @@
       <div class="index-left-block lastest-news">
         <h2>最新消息</h2>
         <ul>
-          <li v-for="item in newsList">
-            <a :href="item.url">{{item.name}}</a>
+          <li v-for="item in newsList" class="new-item">
+            <a :href="item.url">{{item.title}}</a>
           </li>
         </ul>
       </div>
@@ -54,6 +54,15 @@
 
 <script>
 export default {
+  created () {
+    this.$http.get('api/getNewsList')
+    .then((res) => {
+            console.log('res');
+            this.newsList = res.data;
+      }, (err) => {
+        console.log('error');
+    });
+  },//created end
   data () {
     return {
       productList: {
@@ -105,23 +114,23 @@ export default {
         }
       },
       newsList: [
-        {
-          name: '财经消息',
-          url: 'http://starcraft.com'
-        },
-        {
-          name: '体育报道',
-          url: 'http://warcraft.com'
-        },
-        {
-          name: '数码信息',
-          url: 'http://overwatch.com',
-          hot: true
-        },
-        {
-          name: '房产信息',
-          url: 'http://hearstone.com'
-        }
+//        {
+//          title: '财经消息',
+//          url: 'http://starcraft.com'
+//        },
+//        {
+//          title: '体育报道',
+//          url: 'http://warcraft.com'
+//        },
+//        {
+//          title: '数码信息',
+//          url: 'http://overwatch.com',
+//          hot: true
+//        },
+//        {
+//          title: '房产信息',
+//          url: 'http://hearstone.com'
+//        }
       ],
       boardList: [
         {
@@ -242,20 +251,17 @@ export default {
   .lastest-news {
     min-height: 512px;
   }
-  .hot-tag {
-    background: red;
-    color: #fff;
-  }
-  .new-item {
-    display: inline-block;
-    width: 230px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
   .hot-tag{
     background-color: #ff0000;
     color: #ffffff;
     border-radius: 4px;
   }
+  .new-item {
+    display: inline-block;
+    width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;/* 文字超出用...*/
+    white-space: nowrap;/* 文字不换行*/
+  }
+
 </style>
