@@ -50,6 +50,11 @@
     font: inherit;
     vertical-align: baseline;
   }
+  /* 去掉横向滚动条 */
+  body{
+    overflow-x:hidden;
+    overflow-y:scroll;
+  }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {

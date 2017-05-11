@@ -10,11 +10,11 @@
       <h2>{{slides[nowIndex].title}}</h2>
       <!-- pages -->
       <ul class="slide-pages">
-        <li @click="change(-1)">&lt;</li>
+        <li @click="goto(prevIndex)">&lt;</li>
         <li v-for="(item, index) in slides" @click="goto(index)">
-          <a >{{index + 1}}</a>
+          <a :class="{on: index == nowIndex}">{{index + 1}}</a>
         </li>
-        <li @click="change(1)">&gt;</li>
+        <li @click="goto(nextIndex)">&gt;</li>
       </ul>
     </div>
 </template>
@@ -27,28 +27,53 @@ export default {
       default: [],
     }
   },
+
+  // computed
+  computed: {
+    prevIndex () {
+      if(this.nowIndex == 0){
+        return this.slidesLength -1;
+      }
+      else{
+        return this.nowIndex -1;
+      }
+    },
+    nextIndex () {
+      if(this.nowIndex == this.slidesLength -1){
+        return 0;
+      }
+      else{
+        return this.nowIndex + 1;
+      }
+    },
+  },
+
   // methods
   methods: {
     goto (index) {
       this.nowIndex = index;
-      console.log(this.nowIndex);
-      console.error(this.slidesLength-1);
     },
     change (num) {
-      if(num > 0){
-        if(this.nowIndex == this.slidesLength - 1){
-          return this.nowIndex = 0;
-        }
-        this.nowIndex = this.nowIndex + 1;
-      }
-      else{
-        if(this.nowIndex == 0){
-          return this.nowIndex = this.slidesLength - 1;
-        }
-        this.nowIndex = this.nowIndex - 1;
-      }
-    }
+//      if(num > 0){
+//        if(this.nowIndex == this.slidesLength - 1){
+//          return this.nowIndex = 0;
+//        }
+//        this.nowIndex = this.nowIndex + 1;
+//      }
+//      else{
+//        if(this.nowIndex == 0){
+//          return this.nowIndex = this.slidesLength - 1;
+//        }
+//        this.nowIndex = this.nowIndex - 1;
+//      }
+    },
+//    runInv () {
+//      this.invID = setInterval( () => {
+//          //每秒执行一次goto()方法
+//        }, 1000);
+//    }
   },
+
   // data
   data () {
     return  {
@@ -56,9 +81,11 @@ export default {
       slidesLength: this.slides.length,
     }
   },
-  //可以检测父组件穿过来的数据是否拿到，-- mounted
+
+  // mounted -- 可以检测父组件穿过来的数据是否拿到
   mounted () {
     console.log(this.slides);
+    //this.runInv();
   },
 }
 </script>
