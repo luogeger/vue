@@ -35,7 +35,7 @@
     <!-- right -->
     <div class="index-right">
       <!-- banner -->
-      <slide-show :slides="slides"></slide-show>
+      <slide-show :slides="slides" :slideSpeed="slideSpeed"></slide-show>
       <!-- board   line-ladt,index-board-item.id, -->
       <div class="index-board-list">
         <div v-for="(item, index) in boardList" :class="[{'line-last': index%2 !== 0}, 'index-board-'+item.id ]" class="index-board-item">
@@ -75,6 +75,7 @@ export default {
 
   data () {
     return {
+      slideSpeed: 1000,
       slides: [
         {
           src: require('../assets/slideShow/pic1.jpg'),

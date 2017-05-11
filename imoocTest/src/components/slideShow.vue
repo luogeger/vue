@@ -1,9 +1,20 @@
+<!--
+1. 在某一时刻，肯定有2张图片同时存在， 他们分别以什么样的形式，多长的时间隐藏/显示
+2. isShow是在每次图片进行更换的时候改变 -> goto();
+3. 10毫秒以后在改变nowIndex, 改变isShow
+-->
 <template>
-    <div class="slide-show">
+    <div class="slide-show" @mouseover="clearInv" @mouseout="runInv">
       <!-- img -->
       <div class="slide-img">
         <a :href="slides[nowIndex].href">
-          <img :src="slides[nowIndex].src">
+          <transition name="slide-trans">
+            <img v-if="isShow" :src="slides[nowIndex].src">
+          </transition>
+          <transition name="slide-trans-old">
+            <img v-if="!isShow" :src="slides[nowIndex].src">
+          </transition>
+
         </a>
       </div>
       <!-- title -->
@@ -25,6 +36,10 @@ export default {
     slides:{
       type: Array,
       default: [],
+    },
+    slideSpeed:{
+      type: Number,
+      default: 1000,
     }
   },
 
@@ -50,9 +65,16 @@ export default {
 
   // methods
   methods: {
+
     goto (index) {
-      this.nowIndex = index;
+      this.isShow = false;
+      setTimeout(() => {
+        this.isShow = true;
+        this.nowIndex = index;
+      });
+
     },
+
     change (num) {
 //      if(num > 0){
 //        if(this.nowIndex == this.slidesLength - 1){
@@ -67,17 +89,24 @@ export default {
 //        this.nowIndex = this.nowIndex - 1;
 //      }
     },
-//    runInv () {
-//      this.invID = setInterval( () => {
-//          //每秒执行一次goto()方法
-//        }, 1000);
-//    }
+
+    runInv () {
+      this.invID = setInterval( () => {
+          //每秒执行一次goto()方法
+          this.goto(this.nextIndex);
+      }, this.slideSpeed);
+    },
+
+    clearInv () {
+      clearInterval(this.invID);//注意切换的是invID, 不是runInv
+    },
   },
 
   // data
   data () {
     return  {
-      nowIndex: 3,
+      isShow: true,
+      nowIndex: 1,
       slidesLength: this.slides.length,
     }
   },
@@ -85,7 +114,7 @@ export default {
   // mounted -- 可以检测父组件穿过来的数据是否拿到
   mounted () {
     console.log(this.slides);
-    //this.runInv();
+    this.runInv();
   },
 }
 </script>
