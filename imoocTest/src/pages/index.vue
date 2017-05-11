@@ -53,16 +53,27 @@
 </template>
 
 <script>
+import slideShow from '../components/slideShow'
+
 export default {
+
+  components: {
+    slideShow
+  },
+
   created () {
     this.$http.get('api/getNewsList')
-    .then((res) => {
-            console.log('res');
-            this.newsList = res.data;
-      }, (err) => {
+    .then(
+      (res) => {
+          console.log('res');
+          this.newsList = res.data;
+      },
+      (err) => {
         console.log('error');
-    });
+      }
+    );
   },//created end
+
   data () {
     return {
       productList: {
@@ -165,6 +176,7 @@ export default {
 
     }
   },//data end
+
 }
 </script>
 
