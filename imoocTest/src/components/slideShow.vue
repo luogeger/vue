@@ -2,6 +2,9 @@
 1. 在某一时刻，肯定有2张图片同时存在， 他们分别以什么样的形式，多长的时间隐藏/显示
 2. isShow是在每次图片进行更换的时候改变 -> goto();
 3. 10毫秒以后在改变nowIndex, 改变isShow
+
+4. 子组件和父组件交互，触发自定义事件
+    通过：this.$emit('sonToBaba', index);
 -->
 <template>
     <div class="slide-show" @mouseover="clearInv" @mouseout="runInv">
@@ -14,7 +17,6 @@
           <transition name="slide-trans-old">
             <img v-if="!isShow" :src="slides[nowIndex].src">
           </transition>
-
         </a>
       </div>
       <!-- title -->
@@ -71,6 +73,7 @@ export default {
       setTimeout(() => {
         this.isShow = true;
         this.nowIndex = index;
+        this.$emit('sonToBaba', index);
       });
 
     },
