@@ -458,7 +458,7 @@
     ```
 
     - 1.自动轮播需要用到computed.
-    - 2.路由的切换，dialog
+    - 2.路由的切换，dialog -- update
 
 
 
