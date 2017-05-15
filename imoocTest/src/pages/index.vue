@@ -59,7 +59,7 @@ export default {
 
   methods: {
     doSome () {
-      console.log('doSomeThing');
+      //console.log('doSomeThing');
     }
   },
 

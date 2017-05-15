@@ -83,11 +83,11 @@
 
 > 通过``$emit``方法，第一个参数要和父组件对应，第二个参数是要传递的信息
 ```html
-    <hello
-    msgfromfather="this is the msg from his father"
-    v-on:receive-son="receiveSonMsg">
+    <hello msgfromfather="this is the msg from his father" v-on:receive-son="receiveSonMsg">
+    
     </hello>
 ```
+
 ```javascript
     receiveSonMsg: function (msg){
         console.log('这里是父组件：'+msg);
@@ -95,32 +95,6 @@
 ```
 
 - 子组件向父组件传参，第二种方法：
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -339,7 +313,7 @@
 
 ## vue-practice
 - 1.安装vue-router,
-    - 1.引入``import VRouter from 'vue-router'``
+    - 1.引入``import VRouter from 'vue-router'`` 
     - 2.``Vue.use(VRouter)``
     - 3.实例化router， ``let router = new VRouter({})``,vue-router引入进来，就是一个全局的类
         - 配置路由：
@@ -437,6 +411,21 @@
         |-- mutations.js
         |-- modules
     ```
+    
+
+    - 1.自动轮播需要用到computed.
+    - 2.路由的切换，dialog
+
+### 6.9首页-登陆
+> 父向子组件传递属性，子向父组件传递事件
+- 1.先控制内容
+    - 1.``<slot>empty</slot>`` 不起作用
+- 2.控制显示隐藏
+    - 1.注意属性名的转换
+    - 2.子组件的 ``点击事件`` -> 触发自定事件 ``this.$emit('on-close')`` -> 父组件监听到事件, 在触发事件 ``@on-close="closeDialog"`` -> 在通过这个事件，改变数据
+    - 3.分别显示不同的组件，以及变量当做参数传递
+
+
 
 - 7.slide-show
     ```javascript
@@ -456,9 +445,6 @@
       data () {},
     }
     ```
-
-    - 1.自动轮播需要用到computed.
-    - 2.路由的切换，dialog -- update
 
 
 

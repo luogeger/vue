@@ -6,11 +6,11 @@
         <img src="../assets/logo.png" alt="">
         <div class="head-nav">
           <ul class="nav-list">
-            <li>登录</li>
+            <li @click="login">登录</li>
             <li class="nav-pile"></li>
-            <li>注册</li>
+            <li @click="register">注册</li>
             <li class="nav-pile"></li>
-            <li>关于</li>
+            <li @click="about">关于</li>
           </ul>
         </div>
       </div>
@@ -23,11 +23,56 @@
     <div class="app-foot">
       <p> 2016 fishnal MIT</p>
     </div>
-  </div>
+    <!-- dialog -->
+    <!-- login -->
+    <mydialog :is-show="longinDialog" @on-close="closeDialog('longinDialog')">
+      <p>login dialog</p>
+    </mydialog>
+    <!-- register -->
+    <mydialog :is-show="registerDialog" @on-close="closeDialog('registerDialog')">
+      <p>register dialog</p>
+    </mydialog>
+    <!-- about -->
+    <mydialog :is-show="aboutDialog" @on-close="closeDialog('aboutDialog')">
+      <p>about dialog</p>
+    </mydialog>
+    
+  </div><!-- end-->
 
 </template>
 <script>
-
+import Dialog from './dialog'
+export default {
+    components: {
+      mydialog: Dialog,
+    },
+  
+    // data
+    data () {
+        return {
+          longinDialog: false,
+          registerDialog: false,
+          aboutDialog: false,
+        }
+    },
+  
+    // methods
+    methods: {
+        login () {
+            this.longinDialog = true;
+        },
+        register () {
+            this.registerDialog = true;
+        },
+        about () {
+            this.aboutDialog = true;
+        },
+        closeDialog (attr) {
+            this[attr] = false;
+        }
+      
+    }
+}
 </script>
 <style>
   html, body, div, span, applet, object, iframe,
