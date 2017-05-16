@@ -2,27 +2,27 @@
   "getNewsList": [
     {
       "id": 1,
-      "title": "新闻条目1新闻条目1新闻条目1新闻条目1",
-      "url": "http://starcraft.com"
+      "title": "JavaScript (not to be confused with Java) is a dynamic",
+      "url": "http://stackoverflow.com/questions/tagged/javascript"
     },
     {
       "id": 2,
-      "title": "新闻条目2新闻条目2新闻条目2新闻条目2",
-      "url": "http://warcraft.com"
+      "title": "HTML (Hyper Text Markup Language) is the standard markup language used for structuring web pages and formatting conten",
+      "url": "http://stackoverflow.com/questions/tagged/html"
     },
     {
       "id": 3,
-      "title": "新闻条3新闻条3新闻条3",
-      "url": "http://overwatch.com"
+      "title": "CSS (Cascading Style Sheets) is a style sheet language used for describing the look and formatting of HTML (Hyper Text Markup Language)",
+      "url": "http://stackoverflow.com/questions/tagged/css"
     },
     {
       "id": 4,
-      "title": "新闻条4广告发布",
-      "url": "http://hearstone.com"
+      "title": "AJAX (Asynchronous JavaScript and XML) is a technique for creating seamless interactive websites via asynchronous data exchange between client and server",
+      "url": "http://stackoverflow.com/questions/tagged/ajax"
     }
   ],
   "login": {
-    "username": "yudongdong",
+    "username": "luogege",
     "userId": 123123
   },
   "getPrice": {

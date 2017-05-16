@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import slideShow from '../components/slideShow'
+import slideShow from './detail/slideShow'
 
 export default {
 
@@ -265,16 +265,16 @@ export default {
     padding-left: 120px;
   }
   .index-board-car .index-board-item-inner{
-    background: url(../assets/images/1.png) no-repeat;
+    background: url(../assets/images/b1.jpg) no-repeat;
   }
   .index-board-loud .index-board-item-inner{
-    background: url(../assets/images/2.png) no-repeat;
+    background: url(../assets/images/b2.jpg) no-repeat;
   }
   .index-board-earth .index-board-item-inner{
-    background: url(../assets/images/3.png) no-repeat;
+    background: url(../assets/images/b3.jpg) no-repeat;
   }
   .index-board-hill .index-board-item-inner{
-    background: url(../assets/images/4.png) no-repeat;
+    background: url(../assets/images/b4.jpg) no-repeat;
   }
   .index-board-item h2 {
     font-size: 18px;

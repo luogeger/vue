@@ -56,6 +56,8 @@ app.use(hotMiddleware)
 var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
 app.use(staticPath, express.static('./static'))
 
+
+//json-server
 var apiServer = express()
 var bodyParser = require('body-parser')
 apiServer.use(bodyParser.urlencoded({ extended: true }))
@@ -68,12 +70,12 @@ apiRouter.route('/:apiName')
     if (err) throw err
     var data = JSON.parse(data)
     if (data[req.params.apiName]) {
-      res.json(data[req.params.apiName])  
+      res.json(data[req.params.apiName])
     }
     else {
       res.send('no such api name')
     }
-    
+
   })
 })
 

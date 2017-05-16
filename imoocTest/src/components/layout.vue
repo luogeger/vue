@@ -6,35 +6,44 @@
         <img src="../assets/logo.png" alt="">
         <div class="head-nav">
           <ul class="nav-list">
-            <li @click="login">登录</li>
-            <li class="nav-pile"></li>
-            <li @click="register">注册</li>
-            <li class="nav-pile"></li>
+            <!-- 登陆后 -->
+            <li v-if="username !== ''">{{username}} 你好！</li>
+            <li v-if="username !== ''" class="nav-pile"></li>
+            <li v-if="username !== ''" @click="signOut">退出</li>
+            <li v-if="username !== ''" class="nav-pile"></li>
+            <!-- 登陆前 -->
+            <li v-if="username == ''" @click="login">登录</li>
+            <li v-if="username == ''" class="nav-pile"></li>
+            <li v-if="username == ''" @click="register">注册</li>
+            <li v-if="username == ''" class="nav-pile"></li>
             <li @click="about">关于</li>
           </ul>
         </div>
       </div>
     </div>
+    
     <!-- content -->
     <div class="app-content">
       <router-view></router-view>
     </div>
+    
     <!-- footer -->
     <div class="app-foot">
       <p> 2016 fishnal MIT</p>
     </div>
+    
     <!-- dialog -->
     <!-- login -->
     <mydialog :is-show="longinDialog" @on-close="closeDialog('longinDialog')">
-      <p>login dialog</p>
+      <from-log @on-login="onLogin"></from-log>
     </mydialog>
     <!-- register -->
     <mydialog :is-show="registerDialog" @on-close="closeDialog('registerDialog')">
-      <p>register dialog</p>
+      <from-register></from-register>
     </mydialog>
     <!-- about -->
     <mydialog :is-show="aboutDialog" @on-close="closeDialog('aboutDialog')">
-      <p>about dialog</p>
+      <p>本报告在调研数据的基础上，采用定性与定量相结合的方式深入分析了专车市场发展的驱动因素与阻碍因素、专车市场背后的产业格局、专车企业的竞争格局、用户对专车市场的依赖程度、专车对其他交通工具运力的补充效应等，通过这五个章节的研究反映专车市场的发展态势和面临的问题。报告力求客观、深入、准确地反映中国专车市场发展情况，为政府、企事业单位和社会各界提供决策依据。 </p>
     </mydialog>
     
   </div><!-- end-->
@@ -42,9 +51,14 @@
 </template>
 <script>
 import Dialog from './dialog'
+import FromLog from './fromLog.vue'
+import FromRegister from './fromRegister.vue'
+
 export default {
     components: {
       mydialog: Dialog,
+      FromRegister,
+      FromLog,
     },
   
     // data
@@ -53,6 +67,7 @@ export default {
           longinDialog: false,
           registerDialog: false,
           aboutDialog: false,
+          username: ''
         }
     },
   
@@ -62,6 +77,7 @@ export default {
             this.longinDialog = true;
         },
         register () {
+            console.log('layout-register');
             this.registerDialog = true;
         },
         about () {
@@ -69,8 +85,16 @@ export default {
         },
         closeDialog (attr) {
             this[attr] = false;
+        },
+        onLogin (data) {
+            console.log('layout', data.username);
+            this.username = data.username;
+            this.longinDialog = false;
+        },
+        signOut () {
+            alert('暂时不能退出');
         }
-      
+        
     }
 }
 </script>

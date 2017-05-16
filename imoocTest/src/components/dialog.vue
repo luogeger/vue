@@ -1,16 +1,19 @@
 <template>
-  <div>
-    <div class="dialog-wrap" v-if="isShow">
-      <div class="dialog-cover"></div>
-      <div class="dialog-content">
-        <p class="dialog-close" @click="closeMyself">x</p>
-        <slot></slot>
+    <div>
+        <div class="dialog-wrap" >
+            <div @click="closeMyself" v-if="isShow" class="dialog-cover"></div>
+            <transition name="drop">
+                <div v-if="isShow" class="dialog-content">
+                    <p @click="closeMyself" class="dialog-close">x</p>
+                    <slot>empty</slot>
+                </div>
+            </transition>
       </div>
-    </div>
   </div>
 </template>
 <script>
 import Dialog from './dialog'
+
 export default {
     // props
     props: {
@@ -41,7 +44,7 @@ export default {
     transition: all .5s ease;
   }
   .drop-leave-active {
-    transition: all .3s ease;
+    transition: all .5s ease;
   }
   .drop-enter {
     transform: translateY(-500px);
