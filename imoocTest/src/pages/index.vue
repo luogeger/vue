@@ -84,25 +84,30 @@ export default {
       slideSpeed: 1000,
       slides: [
         {
-          src: require('../assets/slideShow/pic1.jpg'),
-          title: 'xxx1',
+          src: require('../assets/slideShow/b1.jpg'),
+          title: '致青春',
           href: 'detail/analysis'
         },
         {
-          src: require('../assets/slideShow/pic2.jpg'),
-          title: 'xxx2',
+          src: require('../assets/slideShow/b2.jpg'),
+          title: '新品上市',
           href: 'detail/count'
         },
         {
-          src: require('../assets/slideShow/pic3.jpg'),
-          title: 'xxx3',
-          href: 'http://xxx.xxx.com'
+          src: require('../assets/slideShow/b3.jpg'),
+          title: '今日热门',
+          href: ''
         },
         {
-          src: require('../assets/slideShow/pic4.jpg'),
-          title: 'xxx4',
+          src: require('../assets/slideShow/b4.jpg'),
+          title: '0元首付',
           href: 'detail/forecast'
-        }
+        },
+        {
+          src: require('../assets/slideShow/b5.jpg'),
+          title: '360疯了',
+          href: 'detail/forecast'
+        },
       ],
       productList: {
         pc: {
@@ -265,16 +270,16 @@ export default {
     padding-left: 120px;
   }
   .index-board-car .index-board-item-inner{
-    background: url(../assets/images/b1.jpg) no-repeat;
+    background: url(../assets/images/1.png) no-repeat;
   }
   .index-board-loud .index-board-item-inner{
-    background: url(../assets/images/b2.jpg) no-repeat;
+    background: url(../assets/images/2.png) no-repeat;
   }
   .index-board-earth .index-board-item-inner{
-    background: url(../assets/images/b3.jpg) no-repeat;
+    background: url(../assets/images/3.png) no-repeat;
   }
   .index-board-hill .index-board-item-inner{
-    background: url(../assets/images/b4.jpg) no-repeat;
+    background: url(../assets/images/4.png) no-repeat;
   }
   .index-board-item h2 {
     font-size: 18px;

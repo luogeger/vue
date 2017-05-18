@@ -171,6 +171,7 @@ export default {
     color: #fff;
   }
   .slide-pages li .on {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    color: #000;
   }
 </style>
