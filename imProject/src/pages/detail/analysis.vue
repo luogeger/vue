@@ -13,14 +13,14 @@
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 购买数量： </div>
         <div class="sales-board-line-right">
-          <v-counter></v-counter>
+          <v-counter @on-change="onParamChange('buyNum', $event)"></v-counter>
         </div>
       </div>
       <!-- 产品类型 -->
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 产品类型： </div>
         <div class="sales-board-line-right">
-          <v-selection :selections="productTypes" ></v-selection>
+          <v-selection @on-change="onParamChange('buyType', $event)" :selections="productTypes" ></v-selection>
           <!--@on-change="onParamChange('buyType')"-->
         </div>
       </div>
@@ -28,7 +28,7 @@
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 有效时间： </div>
         <div class="sales-board-line-right">
-          <v-choose :validTime="validTime"></v-choose>
+          <v-choose @on-change="onParamChange('period', $event)" :validTime="validTime"></v-choose>
         </div>
       </div>
       <!-- 产品版本 -->
@@ -116,12 +116,23 @@ export default {
   
   // methods
   methods: {
-  
+    onParamChange (attr, val) {
+        this[attr] = val;
+        console.log(attr);
+        console.info(this[attr]);
+    
+    },
   },
   
   // data
   data () {
       return {
+        price: 0,
+        buyNum: 0,
+        buyType: {},
+        period: {},
+        versions: [],
+        
         // 购买数量
         
         // 产品类型

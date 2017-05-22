@@ -1,16 +1,21 @@
 <template>
   <div id="app">
-    <h1>{{title}}</h1>
-    <input type="text" v-model="newItem" @keyup.enter="addItem" placeholder="Create a todo">
-    <ul>
-      <li v-for="item in items" :class="{finished: item.completed}" >
-        <p v-text="item.label"></p>
-        <button @click="isCompleted(item)" class="button">Delete</button>
-      </li>
-    </ul>
+    <div class="todoList">
+      <h1>{{title}}</h1>
+      <input type="text" v-model="newItem" @keyup.enter="addItem" placeholder="Create a todo">
+      <ul>
+        <li v-for="item in items" :class="{finished: item.completed}" >
+          <p v-text="item.label"></p>
+          <button @click="isCompleted(item)" class="button">Delete</button>
+        </li>
+      </ul>
+      <p>子 -> 父: <span></span></p>
+      获取子组件传来的信息：<span v-text="newMsg"></span>
+    </div>
     <!--<img src="./assets/logo.png">-->
     <!--<router-view></router-view>-->
-    <hello msgfromfather="this is the msg from his father" v-on:receive-son="receiveSonMsg"></hello>
+    <hello msgfromfather="father to son msg!" v-on:receive-son="receiveSonMsg"></hello>
+    <!--<luo></luo>-->
   </div>
 
 
@@ -22,7 +27,7 @@
   import Storage from './storage.js';// 引入storage.js
   //console.log(Storage); //打印出来的是一个对象，有fetch() 和 save()
   import Hello from './components/Hello.vue';
-//  console.log(Hello);
+//  import Luo from './components/Luo.vue';
   export default {
     name: 'app',
     data: function () {
@@ -30,6 +35,7 @@
         title: 'This  is a todo list',
         items: Storage.fetch(),
         newItem: '',
+        newMsg: '',
       }
     },// <data end>
 
@@ -38,12 +44,17 @@
     watch: {
       items: {
         handler: function (newVal) {
-          console.log(newVal);
           Storage.save(newVal);
         },
         deep: true
       }
     },// <watch end>
+
+    events: {
+      'receive-son': function (msg){
+        console.log(msg);
+      }
+    },
 
     methods: {
       isCompleted: function (item){
@@ -57,9 +68,14 @@
         this.newItem = '';
       },
       receiveSonMsg: function (msg){
-        console.log('这里是父组件：'+msg);
+        this.newMsg = msg;
+      },
+
+    events: {
+      'son-to-father': function (msg){
       }
-    },
+    }
+    },// <methods end>
 
 
 
@@ -68,9 +84,13 @@
 
 <style>
 #app{
-  margin: 150px 0 0 500px;
+  margin: 50px 100px;
   font-family: 'microsoft yahei';
 
+}
+.todoList{
+  border-bottom: 2px solid red;
+  padding-bottom: 10px;
 }
 input{
   width: 400px;

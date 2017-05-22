@@ -300,7 +300,7 @@
     - 1.把自己设为默认的同时，还要把其他所有的设为不默认，forEach(function(item, index){});
     - 2.click(item.addressID);
 
-## imooc
+## im
 - 1.vue-cli
     - 1.成熟的架构设计
     - 2.本地测试服务器
@@ -486,4 +486,14 @@
 ### choose
 - 排他必循环， 运用一个index和nowIndex是否相等，去决定class是否添加
 
-### multiple choice
+### multipleChoice
+- 传入的index在tempArr找不到，返回true或false, 来决定当前的li有没有class
+- 传入的index的push和splice
+
+### 7.6总价计算
+- 4个组件向父组件传参，用同一个方法处理，
+    - multiple,需要lodash工具处理; ``_.remove()``, ``_.map()``
+    - choose,传递的不是index, 而是value
+    - selections, 也是value
+    - counter, 每次number的改变都需要传递, 使用``watch``监视属性的改变，每次改变都执行一次函数
+- multiple, ``_.map()``失败， ``pit: ``count.vue, css无效

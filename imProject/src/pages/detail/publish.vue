@@ -1,9 +1,11 @@
 <template>
-  <div> this is publish</div>
+  <div> this <br>is <br> publish</div>
 </template>
 <script>
 
 </script>
-<style>
-
+<style scoped>
+  div{
+    font: 600 20px 'microsoft yahei';
+  }
 </style>

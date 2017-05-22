@@ -37,7 +37,11 @@ export default {
                return idx != index;
             });
           }
-          
+
+//          let tempArrObj = _.map(this.tempArr, (idx) => {
+//             return this.versions[idx];
+//          });
+//          this.$emit('on-change', tempArrObj); // 要返回的数组对象，运用lodash工具
       },
       checkActive (index) { // 查看index对应的value, 在不在数组里面
           return this.tempArr.indexOf(index) !== -1;

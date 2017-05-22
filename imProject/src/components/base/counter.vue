@@ -54,7 +54,7 @@ export default {
   
   // watch
   watch: {
-    Number () {
+    number () {
         this.$emit('on-change', this.number)
     }
   },

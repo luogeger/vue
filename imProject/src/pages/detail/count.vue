@@ -1,9 +1,11 @@
 <template>
-  <div> this is count</div>
+  <div> this <br>is <br> count</div>
 </template>
 <script>
 
 </script>
-<style>
-
+<style scoped>
+div{
+  font: 600 20px 'microsoft yahei';
+}
 </style>

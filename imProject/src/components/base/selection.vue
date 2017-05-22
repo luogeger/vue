@@ -32,7 +32,7 @@ export default {
     chooseShow (index) {
       this.isShow = false;
       this.nowIndex = index;
-      this.$emit('on-change', this.nowIndex);
+      this.$emit('on-change', this.selections[this.nowIndex]);
     }
   },
   
