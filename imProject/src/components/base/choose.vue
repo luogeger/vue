@@ -1,0 +1,60 @@
+<template>
+  <div class="chooser-component">
+    <ul class="chooser-list">
+      <li @click="checked(index)" v-for="(item, index) in validTime" :class="{active: index == nowIndex}" >{{item.time}}</li>
+    </ul>
+  </div>
+</template>
+<script>
+export default {
+  // props
+  props: {
+    validTime: {
+        type: Array,
+        default: [{
+            label: '入门级别',
+            value: 0
+        }],
+    }
+  },
+  
+  // methods
+  methods: {
+    checked (index) {
+        this.nowIndex = index;
+        //this.$emit('on-change', index); // 传递的不是index, 而是value
+        this.$emit('on-change', this.validTime[index]); // 传递的不是index, 而是value
+    }
+    
+  },
+  
+  // data
+  data () {
+    return {
+      nowIndex: 0,
+    }
+  }
+}
+</script>
+<style scoped>
+  .chooser-component {
+    position: relative;
+    display: inline-block;
+  }
+  .chooser-list li{
+    display: inline-block;
+    border: 1px solid #e3e3e3;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 8px;
+    margin-right: 5px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .chooser-list li.active {
+    border-color: #4fc08d;
+    background: #4fc08d;
+    color: #fff;
+  }
+</style>

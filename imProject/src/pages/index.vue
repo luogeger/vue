@@ -96,17 +96,17 @@ export default {
         {
           src: require('../assets/slideShow/b3.jpg'),
           title: '今日热门',
-          href: ''
+          href: 'detail/forecast'
         },
         {
           src: require('../assets/slideShow/b4.jpg'),
           title: '0元首付',
-          href: 'detail/forecast'
+          href: 'detail/publish'
         },
         {
           src: require('../assets/slideShow/b5.jpg'),
           title: '360疯了',
-          href: 'detail/forecast'
+          href: 'jd.com'
         },
       ],
       productList: {

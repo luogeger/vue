@@ -26,6 +26,7 @@ let router = new VueRouter({
     },
     {
       path: '/detail',
+      redirect:'/detail/forecast',
       component: DetailPage,
       children: [
         {

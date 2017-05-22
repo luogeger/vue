@@ -468,11 +468,22 @@
 - 5.img, li标签, router-link, 同步显示
     - img不在循环里面，需要做一个映射
 
+- 6.detail页面的style会给子组件共用
+
+- 7.点击Logo回到首页，以及点击进入详情页
+    - pc产品的a标签, slide的img的a标签, 点击进入详情页 
+
+- 8.localhost:3000/detail也是能访问，但是页面不友好
+    - ``redirect:'/detail/analysis'``
 
 
+### select
 
+### counter
+- 限制input只能输入数字   
+- 每次数量变化，都要把数据传递给父元素，``watch``
 
+### choose
+- 排他必循环， 运用一个index和nowIndex是否相等，去决定class是否添加
 
-
-
-
+### multiple choice
