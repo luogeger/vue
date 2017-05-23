@@ -22,6 +22,7 @@ bin-release/
 /.idea
 /code
 /luo-project
+/vue-practice
 
 luo-project-cnpm/node_modules
 imooc/node_modules
