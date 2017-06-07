@@ -60,8 +60,6 @@
             //console.log(this.$route.path);
             //console.log(this.imgMap);
             return this.imgMap[this.$route.path];
-            
-            
         }
     }
 

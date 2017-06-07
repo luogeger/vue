@@ -29,7 +29,7 @@
     "amount": 678
   },
   "createOrder": {
-    "orderId": "6djk979"
+    "orderId": "6djk97jkl9"
   },
   "getOrderList": {
     "list": [
@@ -61,5 +61,8 @@
         "amount": "7890元"
       }
     ]
+  },
+  "getPrice": {
+    "amount": 567
   }
 }

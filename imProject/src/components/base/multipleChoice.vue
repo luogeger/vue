@@ -19,7 +19,8 @@ export default {
       versions: {
           type: Array,
           default: [{
-              label: '国行版'
+            label: 'test',
+            value: 0
           }]
       }
     },
@@ -31,17 +32,23 @@ export default {
               this.tempArr.push(index);
           }
           else{ // 如果在就把这index从临时数组删除
-            //index = this.tempArr.indexOf(index);
-            //this.tempArr.splice(index, 1);
-            this.tempArr = _.remove(this.tempArr, (idx) => {
-               return idx != index;
-            });
+            index = this.tempArr.indexOf(index);
+            this.tempArr.splice(index, 1);
+            //this.tempArr = _.remove(this.tempArr, (idx) => {
+            //   return idx != index;
+            //});
           }
 
-//          let tempArrObj = _.map(this.tempArr, (idx) => {
-//             return this.versions[idx];
-//          });
-//          this.$emit('on-change', tempArrObj); // 要返回的数组对象，运用lodash工具
+          //let tempArrObj = _.map(this.tempArr, (idx) => {
+          //  return this.versions[idx];
+          //});
+          
+          let tempArrObj = [];
+          for(var i = 0; i < this.tempArr.length; i++){
+            tempArrObj.push(this.versions[this.tempArr[i]]);
+          };
+          
+          this.$emit('on-change', tempArrObj); // 要传到父组件的是index对应的value, 所以
       },
       checkActive (index) { // 查看index对应的value, 在不在数组里面
           return this.tempArr.indexOf(index) !== -1;
@@ -51,7 +58,7 @@ export default {
     // data
     data () {
         return {
-            tempArr: [1],
+            tempArr: [3],
         }
     },
   

@@ -1,7 +1,7 @@
 <template>
   <div class="chooser-component">
     <ul class="chooser-list">
-      <li @click="checked(index)" v-for="(item, index) in validTime" :class="{active: index == nowIndex}" >{{item.time}}</li>
+      <li @click="checked(index)" v-for="(item, index) in validPeriod" :class="{active: index == nowIndex}" >{{item.label}}</li>
     </ul>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   // props
   props: {
-    validTime: {
+    validPeriod: {
         type: Array,
         default: [{
             label: '入门级别',
@@ -23,7 +23,7 @@ export default {
     checked (index) {
         this.nowIndex = index;
         //this.$emit('on-change', index); // 传递的不是index, 而是value
-        this.$emit('on-change', this.validTime[index]); // 传递的不是index, 而是value
+        this.$emit('on-change', this.validPeriod[index]); // 传递的不是index, 而是value
     }
     
   },
@@ -31,7 +31,7 @@ export default {
   // data
   data () {
     return {
-      nowIndex: 0,
+      nowIndex: 1,
     }
   }
 }

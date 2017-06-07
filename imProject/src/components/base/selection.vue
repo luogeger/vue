@@ -39,7 +39,7 @@ export default {
   // data
   data () {
       return {
-          nowIndex: 0,
+          nowIndex: 1,
           isShow: false,
       }
   },

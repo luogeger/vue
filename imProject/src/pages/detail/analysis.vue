@@ -1,5 +1,4 @@
 <template>
-  
   <div class="sales-board">
     <!-- 介绍 -->
     <div class="sales-board-intro">
@@ -21,40 +20,38 @@
         <div class="sales-board-line-left"> 产品类型： </div>
         <div class="sales-board-line-right">
           <v-selection @on-change="onParamChange('buyType', $event)" :selections="productTypes" ></v-selection>
-          <!--@on-change="onParamChange('buyType')"-->
         </div>
       </div>
       <!-- 有效时间 -->
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 有效时间： </div>
         <div class="sales-board-line-right">
-          <v-choose @on-change="onParamChange('period', $event)" :validTime="validTime"></v-choose>
+          <v-choose @on-change="onParamChange('buyPeriod', $event)" :validPeriod="validPeriod"></v-choose>
         </div>
       </div>
       <!-- 产品版本 -->
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 产品版本： </div>
         <div class="sales-board-line-right">
-          <v-multiple :versions="versions"></v-multiple>
+          <v-multiple @on-change="onParamChange('buyVersions', $event)" :versions="versions"></v-multiple>
         </div>
       </div>
       <!-- 总价 -->
       <div class="sales-board-line">
         <div class="sales-board-line-left"> 总价： </div>
-        <div class="sales-board-line-right"> 0元 </div>
+        <div class="sales-board-line-right"> {{totalPrice}}元 </div>
       </div>
       <!-- 立即购买 -->
       <div class="sales-board-line">
         <div class="sales-board-line-left">&nbsp;</div>
         <div class="sales-board-line-right">
-          <div class="button" @click="">
+          <div class="button" @click="buyNow">
             立即购买
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- 确认购买 -->
+    <!-- 产品说明 -->
     <div class="sales-board-des">
       <h2>产品说明</h2>
       <p>网站访问统计分析报告的基础数据源于网站流量统计信息，但其价值远高于原始数据资料。专业的网站访问统计分析报告对网络营销的价值，正如专业的财务分析报告对企业经营策略的价值。</p>
@@ -77,27 +74,36 @@
         <li>用户所在地理区域分布状况等</li>
       </ul>
     </div>
+    
+    <!-- 确认购买 dialog -->
+    <my-dialog :is-show="isShow" @on-close="isHide">
       <table class="buy-dialog-table">
-        <tr>
-          <th>购买数量</th>
-          <th>产品类型</th>
-          <th>有效时间</th>
-          <th>产品版本</th>
-          <th>总价</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <span></span>
-          </td>
-          <td></td>
-        </tr>
-      </table>
+      <tr>
+        <th>购买数量</th>
+        <th>产品类型</th>
+        <th>有效时间</th>
+        <th>产品版本</th>
+        <th>总价</th>
+      </tr>
+      <tr>
+        <td>{{buyNum}}</td>
+        <td>{{buyType.label}}</td>
+        <td>{{buyPeriod.label}}</td>
+        <td>
+          <span v-for="item in buyVersions">{{item.label}}</span>
+        </td>
+        <td>{{totalPrice}}</td>
+      </tr>
+    </table>
       <h3 class="buy-dialog-title">请选择银行</h3>
-        确认购买
-      </div>
+      <banks @on-change="chooseBank"></banks>
+      <div class="button buy-dialog-btn" @click="confirmBuy"> 确认购买 </div>
+    </my-dialog>
+    
+    <!-- 确认dialog -->
+    <check-order>
+    
+    </check-order>
   </div>
 </template>
 <script>
@@ -105,84 +111,192 @@ import VSelection from '../../components/base/selection'
 import VChoose from '../../components/base/choose'
 import VMultiple from '../../components/base/multipleChoice'
 import VCounter from '../../components/base/counter'
+import _ from 'lodash'
+import Dialog from '../../components/dialog'
+import Banks from '../../components/base/chooseBanks'
+import CheckOrder from '../../components/base/checkOrder'
+//
 export default {
   // component
   components: {
     VSelection,
     VChoose,
     VMultiple,
-    VCounter
+    VCounter,
+    myDialog: Dialog,
+    Banks,
+    CheckOrder,
+  },
+  
+  // data
+  data () {
+    return {
+      buyNum: 0,
+      buyType: {},
+      buyPeriod: {},
+      buyVersions: [],
+      isShow: false,
+      totalPrice: 0,
+      bankId: null,
+      // 产品类型
+      productTypes: [
+        {
+          label: '入门级别',
+          value: 0
+        },
+        {
+          label: '中级版本',
+          value: 1
+        },
+        {
+          label: '高级版本',
+          value: 2
+        },
+      ],
+      
+      // 有效时间
+      validPeriod: [
+        {
+          label: '6个月',
+          value: 0
+        },
+        {
+          label: '9个月',
+          value: 1
+        },
+        {
+          label: '12个月',
+          value: 2
+        },
+      ],
+      
+      // 产品版本
+      versions: [
+        {
+          label: '客户版',
+          value: 0
+        },
+        {
+          label: '代理商版',
+          value: 1
+        },
+        {
+          label: '专家版',
+          value: 2
+        },
+        {
+          label: '基础版',
+          value: 3
+        },
+      ],
+    }
+  },
+  
+  // created
+//  created: function (){
+//    this.onParamChange();
+//  },
+  
+  // mounted
+  mounted: function (){//钩子函数，声明周期
+    this.$nextTick(function (){
+      this.onParamChange();//调用默认方法
+    })
   },
   
   // methods
   methods: {
     onParamChange (attr, val) {
-        this[attr] = val;
-        console.log(attr);
-        console.info(this[attr]);
-    
+      this[attr] = val;
+      this.getPrice();
     },
+    //
+    getPrice () {
+      let versionsArr = _.map(this.buyVersions, (item) => {
+          return item.value;
+      })
+    
+      let reqParams = {
+          buyNum: this.buyNum,
+          buyType: this.buyType.label,
+          period: this.buyPeriod.label,
+          versions: versionsArr.join(','), //this.versions还需要_.map()方法处理一下
+      }
+      console.log(reqParams);
+      this.$http.post('/api/getPrice', reqParams).then(
+        (res) => {
+          this.totalPrice = res.body.amount;
+        },
+        (err) => {
+        
+        }
+      )
+    },
+    
+    //
+    buyNow () {
+      this.isShow = true;
+      
+    },
+    isHide () {
+      this.isShow = false;
+    },
+    //
+    chooseBank (bankObj) {
+      this.bankId = bankObj.id;
+    },
+    
+    //
+    confirmBuy () {
+      let versionsArr = _.map(this.buyVersions, (item) => {
+        return item.value;
+      })
+  
+      let reqParams = {
+        buyNum: this.buyNum,
+        buyType: this.buyType.label,
+        period: this.buyPeriod.label,
+        versions: versionsArr.join(','), //this.versions还需要_.map()方法处理一下
+        bandId: this.bankId,
+      }
+  
+      this.$http.post('/api/createOrder', reqParams).then(
+        (res) => {
+          console.log(res.body.orderId);
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
+    }
+    
   },
   
-  // data
-  data () {
-      return {
-        price: 0,
-        buyNum: 0,
-        buyType: {},
-        period: {},
-        versions: [],
-        
-        // 购买数量
-        
-        // 产品类型
-        productTypes: [
-          {
-            label: '入门级别',
-            value: 0
-          },
-          {
-            label: '中级版本',
-            value: 1
-          },
-          {
-            label: '高级版本',
-            value: 2
-          },
-        ],
-        
-        // 有效时间
-        validTime: [
-          {
-            time: '6个月',
-          },
-          {
-            time: '9个月',
-          },
-          {
-            time: '12个月',
-          },
-        ],
-        
-        // 产品版本
-        versions: [
-          {
-            label: '基础版'
-          },
-          {
-            label: '学生版'
-          },
-          {
-            label: '家庭版'
-          },
-          {
-            label: '企业版'
-          }
-        ]
-      }
-  }
+
 }
 </script>
-<style>
-
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+  .buy-dialog-title {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .buy-dialog-btn {
+    margin-top: 20px;
+  }
+  .buy-dialog-table {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .buy-dialog-table td,
+  .buy-dialog-table th{
+    border: 1px solid #e3e3e3;
+    text-align: center;
+    padding: 5px 0;
+  }
+  .buy-dialog-table th {
+    background: #4fc08d;
+    color: #fff;
+    border: 1px solid #4fc08d;
+  }
 </style>

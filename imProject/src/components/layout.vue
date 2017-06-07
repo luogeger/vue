@@ -37,7 +37,7 @@
     
     <!-- dialog -->
     <!-- login -->
-    <mydialog :is-show="longinDialog" @on-close="closeDialog('longinDialog')">
+    <mydialog :is-show="loginDialog" @on-close="closeDialog('loginDialog')">
       <from-log @on-login="onLogin"></from-log>
     </mydialog>
     <!-- register -->
@@ -67,17 +67,17 @@ export default {
     // data
     data () {
         return {
-          longinDialog: false,
+          loginDialog: false,
           registerDialog: false,
           aboutDialog: false,
           username: ''
         }
     },
-  
+    
     // methods
     methods: {
         login () {
-            this.longinDialog = true;
+            this.loginDialog = true;
         },
         register () {
             console.log('layout-register');
@@ -92,7 +92,7 @@ export default {
         onLogin (data) {
             console.log('layout', data.username);
             this.username = data.username;
-            this.longinDialog = false;
+            this.loginDialog = false;
         },
         signOut () {
             alert('暂时不能退出');

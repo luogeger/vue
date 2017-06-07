@@ -411,7 +411,7 @@
         |-- mutations.js
         |-- modules
     ```
-    属性名以及方法
+    属性及方法
     ```javascript
     export default {
       components: { },
@@ -420,11 +420,34 @@
 
       methods: {},
 
-      computed: {},
-      //
-      mounted () {},
+      computed: {
+        filterAddress: function (){
+          return this.addressList.slice(0, this.addressListLength);
+        }
+      },
+    
+      watch: {
+        number () {
+           this.$emit('on-change', this.number)
+        }
+      },
+      
+      mounted () {
+        this.$nextTick(function (){  //钩子函数，声明周期
+          this.filterAddress();  //调用默认方法
+        })
+      }, 
 
-      created () {},
+      created () {
+        this.$http.get('api/getNewsList')
+        .then(
+          (res) => {
+            this.newsList = res.data
+          }, 
+          (err) => {
+            console.log(err)
+          })
+      }, 
 
       data () {},
     }
@@ -492,8 +515,19 @@
 
 ### 7.6总价计算
 - 4个组件向父组件传参，用同一个方法处理，
-    - multiple,需要lodash工具处理; ``_.remove()``, ``_.map()``
+    - multiple,需要lodash工具处理; ``_.remove(): ``等同于 **splice()**, ``_.map(): ``把数组的集合 **this.tempArr** 转化成数组对象 **tempArrObj**
     - choose,传递的不是index, 而是value
     - selections, 也是value
     - counter, 每次number的改变都需要传递, 使用``watch``监视属性的改变，每次改变都执行一次函数
-- multiple, ``_.map()``失败， ``pit: ``count.vue, css无效
+- multipleChoice ``_.map()``失败， ``pit: ``count.vue, css无效 --> data里面的变量名重复
+- 发送请求，根据参数``tempArrObj``获取后台价格
+
+### 7.8选择银行
+- 抽离这个组件
+- dialog的测试
+- ``:is-show``, ``@on-chose=""``
+
+
+### bug
+- 初始化
+- 下拉框
