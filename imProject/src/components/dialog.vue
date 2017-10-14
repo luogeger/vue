@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="dialog-wrap" >
-            <div @click="closeMyself" v-if="isShow" class="dialog-cover"></div>
+            <div class="dialog-cover" @click="closeMyself" v-if="isShow"></div>
             <transition name="drop">
                 <div v-if="isShow" class="dialog-content">
                     <p @click="closeMyself" class="dialog-close">x</p>
@@ -57,12 +57,13 @@ export default {
     position: fixed;
     width: 100%;
     height: 100%;
+    z-index: 6;
   }
   .dialog-cover {
     background: #000;
     opacity: .3;
     position: fixed;
-    z-index: 5;
+    z-index: 7;
     top: 0;
     left: 0;
     width: 100%;
