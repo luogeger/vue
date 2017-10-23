@@ -20,8 +20,6 @@ bin-release/
 
 # 自己的忽略文件
 /.idea
-/code
-/luo-project
 /vue-practice
 
 luo-project-cnpm/node_modules

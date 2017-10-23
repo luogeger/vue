@@ -85,6 +85,7 @@
 
 
 # Vue.js双向绑定的实现原理
+> http://www.cnblogs.com/kidney/p/6052935.html?utm_source=gold_browser_extension
 ### 1. 访问器属性
 ```javascript
     var obj = new Object();
