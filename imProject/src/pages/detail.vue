@@ -6,7 +6,7 @@
         <img :src="imgAnchor">
         <ul>
           <!--<li v-for="item in products">{{item.name}}</li>-->
-          <router-link :to="{path: item.path}" active-class="active" v-for="item in products" tag="li">
+          <router-link v-for="item in products" :to="{path: item.path}" active-class="active" tag="li">
             {{item.name}}
           </router-link>
         </ul>

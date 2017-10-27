@@ -4,9 +4,9 @@
       <span>{{selections[nowIndex].label}}</span>
       <div class="arrow"></div>
     </div>
-    <div class="selection-list">
+    <div class="selection-list" v-if="isShow">
       <ul>
-        <li v-for="(item, index) in selections" @click="chooseShow(index)" v-if="isShow">{{item.label}}</li>
+        <li v-for="(item, index) in selections" @click="chooseShow(index)">{{item.label}}</li>
       </ul>
     </div>
   </div>
@@ -16,11 +16,11 @@ export default {
   // props
   props: {
       selections: {
-          type: Array,
-          default: [{
-              label: 'default.label',
-              value: 0
-          }]
+//          type: Array,
+//          default: [{
+//              label: 'default.label',
+//              value: 0
+//          }]
       }
   },
   
@@ -39,7 +39,7 @@ export default {
   // data
   data () {
       return {
-          nowIndex: 1,
+          nowIndex: 0,
           isShow: false,
       }
   },

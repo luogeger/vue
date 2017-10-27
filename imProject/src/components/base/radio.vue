@@ -1,7 +1,7 @@
 <template>
   <div class="chooser-component">
     <ul class="chooser-list">
-      <li @click="checked(index)" v-for="(item, index) in validPeriod" :class="{active: index == nowIndex}" >{{item.label}}</li>
+      <li v-for="(item, index) in validPeriod" @click="checked(index)" :class="{active: index == nowIndex}" >{{item.label}}</li>
     </ul>
   </div>
 </template>
