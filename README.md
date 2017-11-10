@@ -2,7 +2,7 @@
 - vue-admin [https://taylorchen709.github.io/vue-admin/](https://taylorchen709.github.io/vue-admin/)
 	- This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
 	
-- iview-admin [https://iview.github.io/iview-admin/#/login](https://iview.github.io/iview-admin/#/login)
+- i-view-admin [https://iview.github.io/iview-admin/#/login](https://iview.github.io/iview-admin/#/login)
     - [https://github.com/iview/iview](https://github.com/iview/iview)
   
 
