@@ -20,11 +20,8 @@ bin-release/
 
 # 自己的忽略文件
 /.idea
-/vue-practice
-
-luo-project-cnpm/node_modules
-imooc/node_modules
-imoocTest/node_modules
-shoppingCar/node_modules
+project/node_modules
+project-cnpm/node_modules
+shopping-car/node_modules
 vue-practice/node_modules
 npm-debug.log
