@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
+
 //
 import Layout from './components/layout'
 import IndexPage from './pages/index'
@@ -16,6 +19,7 @@ import DetailPublish from './pages/detail/publish'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(iView);
 
 let router = new VueRouter({
   mode: 'history',
