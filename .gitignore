@@ -20,8 +20,9 @@ bin-release/
 
 # 自己的忽略文件
 /.idea
+npm-debug.log
+
 project/node_modules
 project-cnpm/node_modules
 shopping-car/node_modules
 vue-practice/node_modules
-npm-debug.log
