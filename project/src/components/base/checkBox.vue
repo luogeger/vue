@@ -1,13 +1,12 @@
 <template>
   <div class="chooser-component">
     <ul class="chooser-list">
-      <li v-for="(item, index) in versions"
-          :class="{active: checkActive(index)}"
+      <!-- versions 通过绑定在父组件上的属性传递过来 -->
+      <li v-for="(item, index) in checkbox"
+          :class="{active: activeJudge(index)}"
           @click="toggleShow(index)">
           {{item.label}}
       </li>
-  
-      
     </ul>
   </div>
 </template>
@@ -16,7 +15,7 @@ import _ from 'lodash'
 export default {
     // props
     props: {
-      versions: {
+      checkbox: {
           type: Array,
           default: [{
             label: 'test',
@@ -24,44 +23,38 @@ export default {
           }]
       }
     },
-    
+
     // methods
     methods: {
       toggleShow (index) {
-          if(this.tempArr.indexOf(index) == -1){ // 如果不在就把index添加到临时数组
+          if(this.tempArr.indexOf(index) === -1){ // 如果不在就把index添加到临时数组
               this.tempArr.push(index);
           }
           else{ // 如果在就把这index从临时数组删除
             index = this.tempArr.indexOf(index);
             this.tempArr.splice(index, 1);
-            //this.tempArr = _.remove(this.tempArr, (idx) => {
-            //   return idx != index;
-            //});
           }
 
-          //let tempArrObj = _.map(this.tempArr, (idx) => {
-          //  return this.versions[idx];
-          //});
-          
+
           let tempArrObj = [];
           for(var i = 0; i < this.tempArr.length; i++){
-            tempArrObj.push(this.versions[this.tempArr[i]]);
+            tempArrObj.push(this.checkbox[this.tempArr[i]]);
           };
-          
           this.$emit('on-change', tempArrObj); // 要传到父组件的是index对应的value, 所以
       },
-      checkActive (index) { // 查看index对应的value, 在不在数组里面
+
+      activeJudge (index) { // 查看index对应的value, 在不在数组里面
           return this.tempArr.indexOf(index) !== -1;
-      }
+      },
     },
-  
+
     // data
     data () {
         return {
-            tempArr: [3],
+            tempArr: [1],
         }
     },
-  
+
 
 }
 

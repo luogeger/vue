@@ -121,7 +121,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
   .slide-trans-enter-active {
     transition: all .5s;
   }
@@ -134,7 +134,7 @@ export default {
   }
   .slide-show {
     position: relative;
-    margin: 15px 15px 15px 0;
+    margin: 15px 0 0 0;
     width: 900px;
     height: 500px;
     overflow: hidden;
@@ -142,12 +142,12 @@ export default {
   .slide-show h2 {
     position: absolute;
     width: 100%;
-    height: 100%;
     color: #fff;
     background: #000;
-    opacity: .5;
+    opacity: .7;
     bottom: 0;
     height: 30px;
+    line-height: 30px;
     text-align: left;
     padding-left: 15px;
   }
@@ -161,7 +161,7 @@ export default {
   }
   .slide-pages {
     position: absolute;
-    bottom: 10px;
+    bottom: 7px;
     right: 15px;
   }
   .slide-pages li {
@@ -172,6 +172,6 @@ export default {
   }
   .slide-pages li .on {
     /*text-decoration: underline;*/
-    color: #000;
+    color: #4FC08D;
   }
 </style>

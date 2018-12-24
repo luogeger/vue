@@ -1,10 +1,9 @@
 <template>
   <div>
-    <!-- head -->
     <div class="app-head">
       <div class="app-head-inner">
         <router-link :to="{path: '/'}">
-          <img src="../assets/logo.png" alt="">
+          <img src="../assets/logo.png" alt="" style="height: 90px;">
         </router-link>
 
         <div class="head-nav">
@@ -23,34 +22,31 @@
           </ul>
         </div>
       </div>
-    </div>
-    
-    <!-- content -->
+    </div><!-- head -->
+
+
     <div class="app-content">
       <router-view></router-view>
-    </div>
-    
-    <!-- footer -->
+    </div><!-- content -->
+
+
     <div class="app-foot">
       <p> 2016 fishnal MIT</p>
-    </div>
-    
-    <!-- dialog -->
-    <!-- login -->
+    </div><!-- footer -->
+
     <my-dialog :is-show="loginDialog" @on-close="closeDialog('loginDialog')">
       <from-log @on-login="onLogin"></from-log>
-    </my-dialog>
-    <!-- register -->
+    </my-dialog><!-- /login -->
+
     <my-dialog :is-show="registerDialog" @on-close="closeDialog('registerDialog')">
       <from-register></from-register>
-    </my-dialog>
-    <!-- about -->
+    </my-dialog><!-- /register -->
+
     <my-dialog :is-show="aboutDialog" @on-close="closeDialog('aboutDialog')">
       <p>本报告在调研数据的基础上，采用定性与定量相结合的方式深入分析了专车市场发展的驱动因素与阻碍因素、专车市场背后的产业格局、专车企业的竞争格局、用户对专车市场的依赖程度、专车对其他交通工具运力的补充效应等，通过这五个章节的研究反映专车市场的发展态势和面临的问题。报告力求客观、深入、准确地反映中国专车市场发展情况，为政府、企事业单位和社会各界提供决策依据。 </p>
-    </my-dialog>
-    
-  </div><!-- end-->
+    </my-dialog><!-- /about -->
 
+  </div><!-- end-->
 </template>
 <script>
 import Dialog from './dialog'
@@ -63,7 +59,7 @@ export default {
       FromRegister,
       FromLog,
     },
-  
+
     // data
     data () {
         return {
@@ -73,14 +69,13 @@ export default {
           username: ''
         }
     },
-    
+
     // methods
     methods: {
         login () {
             this.loginDialog = true;
         },
         register () {
-            console.log('layout-register');
             this.registerDialog = true;
         },
         about () {
@@ -90,14 +85,13 @@ export default {
             this[attr] = false;
         },
         onLogin (data) {
-            console.log('layout', data.username);
             this.username = data.username;
             this.loginDialog = false;
         },
         signOut () {
             alert('暂时不能退出');
         }
-        
+
     }
 }
 </script>
@@ -174,10 +168,7 @@ export default {
   .head-logo {
     float: left;
   }
-  .app-head-inner img {
-    width: 50px;
-    margin-top: 20px;
-  }
+  .app-head-inner
   .head-nav {
     float: right;
   }
@@ -198,7 +189,6 @@ export default {
     line-height: 80px;
     background: #e3e4e8;
     clear: both;
-    margin-top: 30px;
   }
   .container {
     width: 1200px;
@@ -242,7 +232,7 @@ export default {
     border: 1px solid #ccc;
   }
   .g-form-btn {
-  
+
   }
   .g-form-error {
     color: red;

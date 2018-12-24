@@ -84,7 +84,7 @@
     width: 117px;
     height: 32px;
     background-image: url(../../assets/banks/banks.png);
-    background-repeat: no-repeat;
+    /*background-repeat: no-repeat;*/
     margin: 5px;
     border: 1px solid #e3e3e3;
     cursor: pointer;
@@ -146,7 +146,7 @@
   .snongshang {
     background-position: -2880px 0;
   }
-  
+
   .baifubao {
     background-position: -1320px 0;
   }

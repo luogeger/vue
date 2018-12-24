@@ -1,5 +1,5 @@
 <template>
-  <div class="temp">
+  <div class="temp-box">
     <div class="btn">
       <Button>Default</Button>
       <Button type="primary">Primary</Button>
@@ -10,11 +10,30 @@
       <Button type="success">Success</Button>
       <Button type="warning">Warning</Button>
       <Button type="error">Error</Button>
+
+      <br><br><br>
+      <Icon type="checkmark" />
+      <Icon type="calendar"></Icon>
     </div>
+
     <br>
     <Table width="750" border :columns="columns2" :data="data3"></Table>
-  </div>
 
+    <br>
+    <div class="temp">
+      temp.css
+    </div>
+
+    <br>
+    <div class="data-box">
+      <DatePicker type="date" placeholder="选择日期" style="width: 200px"></DatePicker>
+    </div>
+
+    <br>
+    <div class="data-box">
+      <DatePicker type="daterange" placement="bottom-end" placeholder="选择一个区间" style="width: 200px"></DatePicker>
+    </div>
+  </div><!-- /end -->
 </template>
 <script>
   import { Table,Button} from 'iview';

@@ -13,18 +13,23 @@
 </template>
 <script>
 export default {
-  // props
   props: {
       selections: {
-//          type: Array,
-//          default: [{
-//              label: 'default.label',
-//              value: 0
-//          }]
+          type: Array,
+          default: [{
+              label: 'test',
+              value: 0
+          }]
       }
-  },
-  
-  // methods
+  },// props
+
+  data () {
+    return {
+      nowIndex: 0,
+      isShow: false,
+    }
+  },// data
+
   methods:{
     toggleShow () {
       this.isShow = !this.isShow;
@@ -34,18 +39,15 @@ export default {
       this.nowIndex = index;
       this.$emit('on-change', this.selections[this.nowIndex]);
     }
+  },// methods
+
+  mounted () {
+    //this.$emit('on-change', this.selections[this.nowIndex]);
   },
-  
-  // data
-  data () {
-      return {
-          nowIndex: 0,
-          isShow: false,
-      }
-  },
-  
-}
+
+}// end
 </script>
+
 <style>
   .selection-component {
     position: relative;
@@ -94,7 +96,7 @@ export default {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+
   }
   .selection-list li:hover {
     background: #e3e3e3;

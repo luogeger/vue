@@ -213,7 +213,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   .index-wrap {
     width: 1200px;
     margin: 0 auto;
@@ -258,12 +258,15 @@ export default {
   }
   .index-board-item {
     float: left;
-    width: 400px;
+    width: 49.5%;
     background: #fff;
     box-shadow: 0 0 1px #ddd;
     padding: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+
+    &:nth-child(odd){
+      margin-right: 1%;
+    }
   }
   .index-board-item-inner {
     min-height: 125px;

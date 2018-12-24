@@ -7,7 +7,7 @@
       <div class="g-form-line">
         <span class="g-form-label">用户名：</span>
         <div class="g-form-input">
-          <input type="text" v-model="userName" placeholder="请输入用户名" >
+          <input type="text" v-model="userName" placeholder="请输入用户名">
         </div>
         <span class="g-form-error"> {{verifyUserName.text}}</span>
       </div>
@@ -20,7 +20,7 @@
       </div>
       <div class="g-form-line">
         <div class="g-form-btn">
-          <a @click="onLog" class="button" >登录</a>
+          <a @click="onLog" class="button">登录</a>
         </div>
       </div>
       <p></p>
@@ -29,75 +29,74 @@
 </template>
 
 <script>
-export default {
-  data () {
+  export default {
+    data () {
       return {
-          userName: '',
-          passWord: ''
+        userName: '',
+        passWord: ''
       }
-  },
-  
-  // methods
-  methods: {
+    },
+
+    // methods
+    methods: {
       onLog () {
-          if(this.verifyPassWord.text || this.verifyUserName.text){
-              console.error('部分不符合验证');
-          }
-          else{
-              console.log(this.passWord, this.userName, 'success');
-              this.$http.get('api/login', {id: 'luo'}).then(
-                  (res)=> {
-                      this.$emit('on-login', res.data)
-                  },
-                  (err) => {
-                        console.log('error');
-                  }
-              )
-          }
-          
+        if (this.verifyPassWord.text || this.verifyUserName.text) {
+          console.error('部分不符合验证');
+        }
+        else {
+          console.log(this.passWord, this.userName, 'success');
+          this.$http.get('api/login', {id: 'luo'}).then(
+            (res) => {
+              this.$emit('on-login', res.data)
+            },
+            (err) => {
+              console.log('error');
+            }
+          )
+        }
+
       }
-  },
-  
-  // computed
-  computed: {
+    },
+
+    // computed
+    computed: {
       verifyUserName () {
-          let status, text;
-          if(!/@/g.test(this.userName)){
-            status = false;
-              text = '没有包含@';
-          }else{
-              status = true;
-              text = '';
-          }
-          // 解决第一次就显示verify.text
-          if(! this.userflag){
-              text = '';
-              this.userflag = true;
-          }
-          return {status, text}
-      },
-      verifyPassWord () {
         let status, text;
-        if(!/^\w{1,6}$/g.test(this.passWord)){
+        if (!/@/g.test(this.userName)) {
           status = false;
-          text = '密码不是1-6位';
-        }else{
+          text = '没有包含@';
+        } else {
           status = true;
           text = '';
         }
         // 解决第一次就显示verify.text
-        if(! this.passflag){
+        if (!this.userflag) {
+          text = '';
+          this.userflag = true;
+        }
+        return {status, text}
+      },
+      verifyPassWord () {
+        let status, text;
+        if (!/^\w{1,6}$/g.test(this.passWord)) {
+          status = false;
+          text = '密码不是1-6位';
+        } else {
+          status = true;
+          text = '';
+        }
+        // 解决第一次就显示verify.text
+        if (!this.passflag) {
           text = '';
           this.passflag = true;
         }
         return {status, text}
       }
-  }
+    }
 
-}
+  }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
 </style>

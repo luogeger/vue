@@ -13,7 +13,7 @@ import DetailAnalysis from './pages/detail/analysis'
 import DetailCount from './pages/detail/count'
 import DetailForecast from './pages/detail/forecast'
 import DetailPublish from './pages/detail/publish'
-
+import temp from './assets/css/temp.css'
 
 
 

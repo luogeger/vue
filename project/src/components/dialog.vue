@@ -22,24 +22,24 @@ export default {
             default: false
         }
     },
-    
+
     // data
     data () {
         return {
-        
+
         }
     },
-  
+
     // methods
     methods: {
         closeMyself () {
             this.$emit('on-close');
         }
     }
-    
+
 }
 </script>
-<style scope>
+<style scope lang="scss">
   .drop-enter-active {
     transition: all .5s ease;
   }
@@ -52,7 +52,7 @@ export default {
   .drop-leave-active {
     transform: translateY(-500px);
   }
-  
+
   .dialog-wrap {
     position: fixed;
     width: 100%;
@@ -79,18 +79,20 @@ export default {
     left: 50%;
     margin-left: -25%;
     z-index: 10;
-    border: 2px solid #464068;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 0 #464068;
     padding: 2%;
     line-height: 1.6;
   }
   .dialog-close {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 15px;
+    top: 15px;
     width: 20px;
     height: 20px;
     text-align: center;
     cursor: pointer;
+    color: blue;
   }
   .dialog-close:hover {
     color: #4fc08d;

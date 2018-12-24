@@ -29,7 +29,7 @@ var vm = new Vue({
         carView: function (){
             var _this = this;
             //this.asd = 'luogeger';
-            this.$http.get('asset/product.json').then(function (res){
+            this.$http.get('data/product.json').then(function (res){
                 _this.productList = res.body.result.list;
             });
         },

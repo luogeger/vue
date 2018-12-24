@@ -14,16 +14,31 @@
 - vue.js开发环境的搭建、脚手架工具的使用
 - vue.js具体的指令和项目实践
 
+
+## 安装：vue.js开发环境搭建及热更新
+- 命令行工具安装
+    - 1.全局安装vue-cli: ``npm install --global vue-cli``
+        - 检查是否安装好，直接在命令行输入``vue``
+    - 2.创建一个 基于webpack模板的新项目：``vue init webpack my-project``
+        - 这时候你会看到当前文件夹多了一些文件
+    - 3.在``my-project``文件夹打开命令行，``npm install``
+        - **注意：** 有时候npm的速度很慢，可以考虑cnpm, 输入下面命令行
+        - ``npm install -g cnpm --registry=https://registry.npm.taobao.org``
+        -  输入命令：``cnpm``检查是否安装好，以后用到npm的地方用cnpm代替。
+
+        
 ### 准备知识
 - 前端**模块化**基础
 - 对**ES6**有初步了解
 - 熟悉基础框架
-    - name: ''
-    - data: {}
-    - props: [ ]
-    - components: {}
-    - methods: {}
-    - watch: {}
+    - `name: ''`
+    - `data () {}`
+    - `props: [ ]`
+    - `methods: {}`
+    - `components: {} `// 一定要有返回值
+    - `watch: {}`
+    - `filters: {}`
+
 
 ## 划分组件
 - 功能模块：select，pagenation...
@@ -105,16 +120,6 @@
 
 
 
-## 安装：vue.js开发环境搭建及热更新
-- 命令行工具安装
-    - 1.全局安装vue-cli: ``npm install --global vue-cli``
-        - 检查是否安装好，直接在命令行输入``vue``
-    - 2.创建一个 基于webpack模板的新项目：``vue init webpack my-project``
-        - 这时候你会看到当前文件夹多了一些文件
-    - 3.在``my-project``文件夹打开命令行，``npm install``
-        - **注意：** 有时候npm的速度很慢，可以考虑cnpm, 输入下面命令行
-        - ``npm install -g cnpm --registry=https://registry.npm.taobao.org``
-        -  输入命令：``cnpm``检查是否安装好，以后用到npm的地方用cnpm代替。
 
 
 ## 介绍
@@ -306,7 +311,7 @@
     - 1.把自己设为默认的同时，还要把其他所有的设为不默认，forEach(function(item, index){});
     - 2.click(item.addressID);
 
-## im
+## project
 - 1.vue-cli
     - 1.成熟的架构设计
     - 2.本地测试服务器
@@ -317,7 +322,7 @@
         - ``npm install``,安装项目依赖
 
 
-## vue-practice
+## practice
 - 1.安装vue-router,
     - 1.引入``import VRouter from 'vue-router'`` 
     - 2.``Vue.use(VRouter)``

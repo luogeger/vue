@@ -12,22 +12,21 @@ export default {
     validPeriod: {
         type: Array,
         default: [{
-            label: '入门级别',
+            label: 'test',
             value: 0
         }],
     }
   },
-  
+
   // methods
   methods: {
     checked (index) {
         this.nowIndex = index;
-        //this.$emit('on-change', index); // 传递的不是index, 而是value
         this.$emit('on-change', this.validPeriod[index]); // 传递的不是index, 而是value
     }
-    
+
   },
-  
+
   // data
   data () {
     return {
