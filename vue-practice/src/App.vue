@@ -18,11 +18,12 @@
 </template>
 
 <script>
-import Init from './assets/css/init.less'
+
+
 </script>
 
 <style lang="less">
-  .clearfix(){
+  .clearfix() {
     &:before,
     &:after {
       content: " ";
@@ -31,7 +32,8 @@ import Init from './assets/css/init.less'
     &:after {
       clear: both;
     }
-  };
+  }
+
   .app-head {
     background: #363636;
     color: #b2b2b2;
@@ -43,16 +45,23 @@ import Init from './assets/css/init.less'
       width: 1200px;
       margin: 0 auto;
       .clearfix();
-      .head-logo{
+
+      .head-logo {
         float: left;
+
         img {
           width: 50px;
         }
       }
-      .head-nav{
+
+      .head-nav {
         float: right;
       }
-    }// inner
-  }// app-head
+    }
+
+    // inner
+  }
+
+  // app-head
 
 </style>
